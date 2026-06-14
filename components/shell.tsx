@@ -5,14 +5,18 @@ import { Nav } from "@/components/nav";
 import { CommandMenu } from "@/components/command-menu";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { SmoothScroll } from "@/components/smooth-scroll";
+import { ClickSpark } from "@/components/ui/click-spark";
+import { CursorTrail } from "@/components/ui/cursor-trail";
 
-/** Client shell: wires the scroll progress, nav, smooth scroll and ⌘K menu. */
+/** Client shell: wires scroll progress, nav, smooth scroll, ⌘K and cursor FX. */
 export function Shell({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
 
   return (
     <SmoothScroll>
       <ScrollProgress />
+      <CursorTrail />
+      <ClickSpark />
       <Nav onOpenCommand={() => setOpen(true)} />
       <CommandMenu open={open} setOpen={setOpen} />
       <main>{children}</main>

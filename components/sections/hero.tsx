@@ -2,8 +2,10 @@
 
 import { motion } from "motion/react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { AnimatedGrid } from "@/components/ui/animated-grid";
+import { Particles } from "@/components/ui/particles";
+import { DecryptedText } from "@/components/ui/decrypted-text";
 import { TextReveal } from "@/components/ui/text-reveal";
+import { StarBorder } from "@/components/ui/star-border";
 import { Magnetic } from "@/components/ui/magnetic";
 import { hero, site } from "@/lib/data";
 
@@ -11,9 +13,14 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-[100svh] flex-col justify-center px-6 pt-28"
+      className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden px-6 pt-28"
     >
-      <AnimatedGrid />
+      {/* interactive particle field */}
+      <div aria-hidden className="absolute inset-0 -z-10">
+        <Particles />
+        <div className="absolute inset-0 bg-grid opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-bg" />
+      </div>
 
       <div className="mx-auto w-full max-w-5xl">
         <motion.div
@@ -30,7 +37,7 @@ export function Hero() {
         </motion.div>
 
         <h1 className="max-w-4xl text-balance text-[clamp(2.5rem,7vw,5.25rem)] font-semibold leading-[1.02] tracking-[-0.03em]">
-          <TextReveal text="Building production software" as="span" />
+          <DecryptedText text="Building production software" />
           <br className="hidden sm:block" />
           <span className="text-muted">
             <TextReveal text="from idea to deployment." delay={0.35} as="span" />
@@ -53,13 +60,10 @@ export function Hero() {
           className="mt-10 flex flex-wrap items-center gap-3"
         >
           <Magnetic>
-            <a
-              href="#work"
-              className="group inline-flex items-center gap-2 rounded-full bg-text px-6 py-3 text-sm font-medium text-bg transition-colors hover:bg-white"
-            >
+            <StarBorder href="#work">
               View featured work
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-            </a>
+            </StarBorder>
           </Magnetic>
           <Magnetic strength={0.25}>
             <a

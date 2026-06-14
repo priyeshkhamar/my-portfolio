@@ -2,6 +2,7 @@ import { Shell } from "@/components/shell";
 import { Hero } from "@/components/sections/hero";
 import { About } from "@/components/sections/about";
 import { Experience } from "@/components/sections/experience";
+import { TechMarquee } from "@/components/sections/tech-marquee";
 import { CaseStudy } from "@/components/sections/case-study";
 import { Skills } from "@/components/sections/skills";
 import { Philosophy } from "@/components/sections/philosophy";
@@ -14,6 +15,7 @@ export default function Page() {
       <Hero />
       <About />
       <Experience />
+      <TechMarquee />
       <CaseStudy />
       <Skills />
       <Philosophy />

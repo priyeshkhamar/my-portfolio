@@ -50,7 +50,7 @@ export function CaseStudy() {
         <div className="mt-6 grid gap-6 md:grid-cols-2">
           {caseStudy.sections.map((s, i) => (
             <ScrollReveal key={s.label} delay={(i % 2) * 0.08}>
-              <SpotlightCard className="h-full p-7">
+              <SpotlightCard tilt maxTilt={5} className="h-full p-7">
                 <div className="flex items-center gap-3">
                   <span className="font-mono text-[11px] uppercase tracking-widest text-accent">
                     {String(i + 1).padStart(2, "0")}

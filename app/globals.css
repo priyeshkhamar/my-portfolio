@@ -90,6 +90,39 @@ body {
   text-wrap: balance;
 }
 
+/* Star-border button: rotating conic accent sweep */
+.star-border__spin {
+  background: conic-gradient(
+    from var(--angle, 0deg),
+    transparent 0deg,
+    var(--color-accent) 60deg,
+    transparent 140deg,
+    transparent 360deg
+  );
+  animation: star-spin 3s linear infinite;
+}
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes star-spin {
+  to {
+    --angle: 360deg;
+  }
+}
+/* Fallback for browsers without @property: rotate the layer instead */
+@supports not (background: conic-gradient(from var(--angle), red, blue)) {
+  .star-border__spin {
+    animation: star-rotate 3s linear infinite;
+  }
+  @keyframes star-rotate {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

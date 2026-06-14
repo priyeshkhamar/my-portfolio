@@ -21,7 +21,7 @@ export function Skills() {
               delay={(i % 3) * 0.06}
               className={i === 0 ? "lg:col-span-2" : ""}
             >
-              <SpotlightCard className="h-full p-6">
+              <SpotlightCard tilt className="h-full p-6">
                 <div className="flex items-baseline justify-between">
                   <h3 className="text-base font-medium tracking-tight">
                     {group.title}
