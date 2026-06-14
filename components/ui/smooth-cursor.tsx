@@ -14,18 +14,16 @@ export function SmoothCursor({
   pointsCount = 40,
   spring = 0.4,
   damping = 0.5,
-  color = "79,140,255",
-  baseWidth = 8,
-  blur = 10,
-  opacity = 1,
-  blend = "source-over" as GlobalCompositeOperation,
+  color = "237,237,237",
+  baseRadius = 17,
+  opacity = 0.85,
+  blend = "lighter" as GlobalCompositeOperation,
 }: {
   pointsCount?: number;
   spring?: number;
   damping?: number;
   color?: string;
-  baseWidth?: number;
-  blur?: number;
+  baseRadius?: number;
   opacity?: number;
   blend?: GlobalCompositeOperation;
 }) {
@@ -88,37 +86,40 @@ export function SmoothCursor({
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.globalCompositeOperation = blend;
-      ctx.lineCap = "round";
-      ctx.lineJoin = "round";
-      ctx.shadowBlur = blur;
-      ctx.shadowColor = `rgba(${color},0.9)`;
-      ctx.strokeStyle = `rgba(${color},${opacity})`;
 
-      const velo = Math.min(speed / 14, 2.4); // velocity scaling
+      const velo = Math.min(speed / 16, 1.6); // velocity scaling
 
-      // One continuous smooth curve through the chain (quadratic through
-      // midpoints). Stacking progressively shorter sub-strokes from the head
-      // produces a ribbon that is thick at the pointer and tapers to the tail.
-      const strokeChain = (count: number, width: number) => {
-        if (width < 0.2 || count < 2) return;
-        ctx.lineWidth = width;
+      // Soft airbrush: stamp feathered radial-gradient blobs along the chain,
+      // interpolating between points so they overlap into one continuous brush.
+      // Radius tapers from the pointer (head) to the tail; additive blend builds
+      // the bright, soft-edged core seen in the reference.
+      const stamp = (cx: number, cy: number, r: number, a: number) => {
+        if (r < 0.5) return;
+        const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
+        g.addColorStop(0, `rgba(${color},${a})`);
+        g.addColorStop(0.5, `rgba(${color},${a * 0.45})`);
+        g.addColorStop(1, `rgba(${color},0)`);
+        ctx.fillStyle = g;
         ctx.beginPath();
-        ctx.moveTo(points[0].x, points[0].y);
-        for (let i = 1; i < count - 1; i++) {
-          const midX = (points[i].x + points[i + 1].x) / 2;
-          const midY = (points[i].y + points[i + 1].y) / 2;
-          ctx.quadraticCurveTo(points[i].x, points[i].y, midX, midY);
-        }
-        ctx.stroke();
+        ctx.arc(cx, cy, r, 0, Math.PI * 2);
+        ctx.fill();
       };
 
-      const scale = 0.45 + velo;
-      strokeChain(points.length, baseWidth * 0.55 * scale);
-      strokeChain(Math.floor(points.length * 0.62), baseWidth * 0.9 * scale);
-      strokeChain(Math.floor(points.length * 0.32), baseWidth * 1.25 * scale);
+      const sub = 4; // interpolation density between chain points
+      for (let i = 0; i < points.length - 1; i++) {
+        const a = points[i];
+        const b = points[i + 1];
+        const taper = 1 - i / points.length; // 1 at head → 0 at tail
+        const radius = baseRadius * taper * (0.55 + velo);
+        const alpha = opacity * 0.12 * (0.4 + taper);
+        for (let s = 0; s < sub; s++) {
+          const f = s / sub;
+          stamp(a.x + (b.x - a.x) * f, a.y + (b.y - a.y) * f, radius, alpha);
+        }
+      }
 
       // gentle decay so a stationary pointer settles
-      speed *= 0.92;
+      speed *= 0.9;
 
       if (running) raf = requestAnimationFrame(draw);
     };
@@ -142,7 +143,7 @@ export function SmoothCursor({
       window.removeEventListener("mousemove", onMove);
       document.removeEventListener("visibilitychange", onVis);
     };
-  }, [pointsCount, spring, damping, color, baseWidth, blur, opacity, blend]);
+  }, [pointsCount, spring, damping, color, baseRadius, opacity, blend]);
 
   return (
     <canvas
