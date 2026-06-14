@@ -7,6 +7,7 @@ import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { ClickSpark } from "@/components/ui/click-spark";
 import { CursorTrail } from "@/components/ui/cursor-trail";
+import { SmoothCursor } from "@/components/ui/smooth-cursor";
 
 /** Client shell: wires scroll progress, nav, smooth scroll, ⌘K and cursor FX. */
 export function Shell({ children }: { children: React.ReactNode }) {
@@ -16,6 +17,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
     <SmoothScroll>
       <ScrollProgress />
       <CursorTrail />
+      <SmoothCursor />
       <ClickSpark />
       <Nav onOpenCommand={() => setOpen(true)} />
       <CommandMenu open={open} setOpen={setOpen} />

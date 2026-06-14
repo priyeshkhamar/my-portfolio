@@ -33,7 +33,7 @@ export function CursorTrail() {
 
   return (
     <div aria-hidden className="pointer-events-none fixed inset-0 z-[65] mix-blend-screen">
-      {/* lagging glow */}
+      {/* ambient glow that trails the smooth cursor */}
       <motion.div
         className="absolute h-[260px] w-[260px] rounded-full"
         style={{
@@ -45,11 +45,6 @@ export function CursorTrail() {
             "radial-gradient(circle, rgba(79,140,255,0.18), transparent 60%)",
           filter: "blur(8px)",
         }}
-      />
-      {/* crisp dot */}
-      <motion.div
-        className="absolute h-2 w-2 rounded-full bg-accent"
-        style={{ left: x, top: y, x: "-50%", y: "-50%" }}
       />
     </div>
   );
