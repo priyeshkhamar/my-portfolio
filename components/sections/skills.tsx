@@ -11,7 +11,7 @@ export function Skills() {
       <div className="mx-auto w-full max-w-5xl">
         <SectionHeading
           kicker="Capabilities"
-          title="The stack I build, ship, and own."
+          title="The stack I work with."
         />
 
         <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">

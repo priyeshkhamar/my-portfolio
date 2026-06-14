@@ -25,17 +25,17 @@ export const site = {
   linkedin: "https://linkedin.com/in/priyeshkhamar",
   url: siteUrl,
   description:
-    "Full-Stack Software Developer who owns product delivery — shipping production React systems, owning API contracts, and coordinating backend and iOS teams from idea to deployment.",
+    "Full-Stack Software Developer focused on shipping production React applications, maintaining API contracts, and coordinating with backend and iOS teams from idea to deployment.",
 } as const;
 
 export const hero = {
   kicker: "Full-Stack Software Developer",
   headline: "Building production software from idea to deployment.",
-  sub: "I own the surface where product meets engineering — sole developer of a production React platform, and the API contract binding its Laravel backend and native iOS app.",
+  sub: "I work across product and engineering — sole developer of a production React platform, and I maintain the API contract between its Laravel backend and native iOS app.",
   metrics: [
     { value: "2+", label: "Years shipping production" },
     { value: "Sole", label: "Developer of the platform web app" },
-    { value: "3", label: "Workstreams driven · web · iOS · backend" },
+    { value: "3", label: "Workstreams · web · iOS · backend" },
   ],
 } as const;
 
@@ -43,25 +43,25 @@ export const about = {
   kicker: "About",
   title: "From understanding the product to building it.",
   paragraphs: [
-    "I didn't start in an editor — I started in the room where products get decided, coordinating delivery and learning exactly why features live or die. That vantage is what most engineers spend years trying to acquire.",
-    "So when I moved into building, I owned outcomes, not tickets: a production React platform from an empty repo, the API contracts other teams depend on, and the calls that keep a system coherent as it grows. Product thinking and engineering execution aren't separate skills for me — they're the same job.",
+    "I didn't start in an editor. I started by coordinating delivery between stakeholders and engineers, which is where I learned how products actually get scoped and shipped.",
+    "When I moved into development, I built a production React platform from an empty repo and took on the API contracts other teams rely on. Having seen the product side first, I try to keep the why in view, not just the how.",
   ],
   pillars: [
     {
       title: "Product understanding",
-      body: "I scope features from the user backward, not the ticket forward — so what ships actually moves the metric it was meant to.",
+      body: "I try to scope features from the user's need first, so what ships solves the problem it was meant to.",
     },
     {
       title: "Ownership",
-      body: "From empty repo to production incident at 11pm, I own the whole lifecycle. No hand-offs, no 'not my layer.'",
+      body: "I stay with a feature across its lifecycle — from first commit to fixing issues in production — rather than handing it off partway.",
     },
     {
       title: "Communication",
-      body: "I write the contract, document the interface, and keep backend and iOS teams aligned on a single source of truth.",
+      body: "I write and document the API contract so the backend and iOS teams have a single reference to build against.",
     },
     {
       title: "Technical growth",
-      body: "I move toward the hard problem on purpose — schema design, auth, cross-platform integration — because that's where I compound.",
+      body: "I take on the less familiar problems — schema design, auth, cross-platform integration — because that's how I keep learning.",
     },
   ],
 } as const;
@@ -83,11 +83,11 @@ export const experience: ExperienceItem[] = [
     company: "Attra Technologies",
     location: "Ahmedabad",
     summary:
-      "Sole developer of the platform's web application — and the primary technical interface between product and an external engineering team.",
+      "Sole developer of the platform's web application, and the main technical point of contact between product and an external engineering team.",
     outcomes: [
       "Built CIO 360 — an IT operations, security orchestration & governance platform — as the sole React.js developer, from empty repo to live users.",
       "Designed and documented the REST API contracts a Laravel backend and native iOS app both build against — endpoint schemas, payloads and data flows.",
-      "Acted as the single technical interface between product and a 3-person external team, driving delivery across web, iOS and backend to deadline.",
+      "Worked as the main technical point of contact between product and a 3-person external team, helping coordinate delivery across web, iOS and backend.",
     ],
     stack: ["React.js", "Redux", "REST contracts", "Laravel (integration)", "iOS (integration)"],
   },
@@ -97,7 +97,7 @@ export const experience: ExperienceItem[] = [
     company: "Attra Technologies",
     location: "Ahmedabad",
     summary:
-      "Bridged stakeholders and external teams — the role that taught me why products succeed before I learned to build them.",
+      "Coordinated between stakeholders and external teams — the role where I learned how delivery actually works.",
     outcomes: [
       "Coordinated between business stakeholders and external development teams through daily standups and structured check-ins, keeping requirements clear and deadlines met.",
       "Maintained project trackers, documented key decisions and ran cross-functional syncs.",
@@ -136,13 +136,13 @@ export const caseStudy = {
     },
     {
       label: "Approach",
-      title: "Own the interface, not just the implementation.",
-      body: "I treated the API contract as a first-class, documented artifact and owned it — scoping each feature from the operator's workflow backward and aligning all three teams on one source of truth before code was written.",
+      title: "Define the contract before building against it.",
+      body: "I documented the API contract up front and kept it as the shared reference — agreeing the data shapes with the backend and iOS teams before building each feature.",
     },
     {
       label: "Architecture",
-      title: "A React app built to stay coherent under growth.",
-      body: "Built from scratch in React with Redux and a deliberate component architecture, so a growing set of integrations and compliance views stayed coherent inside one dashboard — every call mine to make as sole developer.",
+      title: "A React app that stays organized as it grows.",
+      body: "Built from scratch in React with Redux and a clear component structure, so a growing set of integrations and compliance views stayed organized within one dashboard.",
     },
     {
       label: "API Design",
@@ -151,13 +151,13 @@ export const caseStudy = {
     },
     {
       label: "Cross-platform Collaboration",
-      title: "The single technical interface between product and engineering.",
-      body: "I authored the scope docs for a 3-person external iOS and backend team and drove all three workstreams through daily syncs — keeping everyone aligned on the contract and shipping to deadline.",
+      title: "The point of contact between product and engineering.",
+      body: "I wrote the scope docs for a 3-person external iOS and backend team and used daily syncs to keep the work aligned across web, iOS and backend.",
     },
     {
       label: "Outcome",
-      title: "Shipped to the leaders who run on it.",
-      body: "CIO 360 reached live users — IT leaders and MSPs who now monitor their posture, track compliance and watch automated responses from one place — built and owned independently, proof that owning the contract is what keeps a multi-team system trustworthy.",
+      title: "In production with real users.",
+      body: "CIO 360 is in production — used by IT teams and MSPs to monitor their posture, track compliance and watch automated responses from one place. I built and shipped the web app independently.",
     },
   ],
   stack: [
@@ -230,40 +230,40 @@ export const skillGroups: SkillGroup[] = [
 
 export const philosophy = {
   kicker: "How I work",
-  title: "Engineering is a series of decisions you have to live with.",
+  title: "A few things I try to work by.",
   principles: [
     {
       n: "01",
       title: "Ownership over hand-off",
-      body: "I take features from ambiguous idea to deployed system. The fewer seams between 'who scoped it' and 'who shipped it,' the better the software.",
+      body: "I like to take a feature from rough idea through to deployment rather than handing it off partway. Fewer hand-offs usually means fewer things fall through the cracks.",
     },
     {
       n: "02",
-      title: "Shipping is the point",
-      body: "Code that isn't in front of users isn't finished. I optimise for getting something correct in production, then making it better — not for theoretical perfection.",
+      title: "Ship, then improve",
+      body: "I try to get something correct into production first and improve it from there, instead of polishing in isolation.",
     },
     {
       n: "03",
-      title: "Documentation is design",
-      body: "When three teams build against one contract, the document is the product. Writing the interface down forces the clarity that prevents incidents.",
+      title: "Write the interface down",
+      body: "When several teams build against one contract, writing the interface down clearly saves a lot of confusion later.",
     },
     {
       n: "04",
-      title: "Collaboration is a contract",
-      body: "Working across backend and iOS taught me that good integration is just agreed definitions, kept honest. I make the agreement explicit so the teams can move fast.",
+      title: "Agree the definitions early",
+      body: "Working across backend and iOS taught me that good integration mostly comes down to clear, agreed definitions. I try to make those explicit early.",
     },
     {
       n: "05",
-      title: "Product thinking first",
-      body: "I scope from the user's workflow backward. The best engineering decision is often the one that questions whether the feature should exist as specified.",
+      title: "Keep the user in view",
+      body: "Having worked on the product side, I try to keep the user's actual need in view and to ask early whether a feature solves the right problem.",
     },
   ],
 } as const;
 
 export const contact = {
   kicker: "Contact",
-  title: "Have a system worth building?",
-  body: "I'm interested in roles and collaborations where I can own real product surface — from contract to production. The fastest way to reach me is email.",
+  title: "Let's talk.",
+  body: "I'm looking for roles where I can take features from idea through to production. Email is the best way to reach me.",
 } as const;
 
 export type NavLink = { label: string; href: string };

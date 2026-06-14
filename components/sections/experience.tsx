@@ -24,7 +24,7 @@ export function Experience() {
       <div className="mx-auto w-full max-w-5xl">
         <SectionHeading
           kicker="Trajectory"
-          title="Coordinator to engineer — a deliberate climb toward ownership."
+          title="From coordinator to engineer."
         />
 
         <div ref={ref} className="relative mt-16 pl-8 sm:pl-10">
