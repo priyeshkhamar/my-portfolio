@@ -78,7 +78,7 @@ export type ExperienceItem = {
 
 export const experience: ExperienceItem[] = [
   {
-    period: "Jan 2024 — Present",
+    period: "July 2024 — Present",
     role: "Software Developer",
     company: "Attra Technologies",
     location: "Ahmedabad",
@@ -92,7 +92,7 @@ export const experience: ExperienceItem[] = [
     stack: ["React.js", "Redux", "REST contracts", "Laravel (integration)", "iOS (integration)"],
   },
   {
-    period: "Jul 2023 — Dec 2023",
+    period: "July 2024 — Jan 2026",
     role: "Project Coordinator",
     company: "Attra Technologies",
     location: "Ahmedabad",
@@ -106,7 +106,7 @@ export const experience: ExperienceItem[] = [
     stack: ["Agile / Scrum", "Delivery", "Stakeholders", "Documentation"],
   },
   {
-    period: "Jan 2023 — Jul 2023",
+    period: "Jan 2023 — July 2023",
     role: "Software Developer Intern",
     company: "Virtual Coders",
     location: "Ahmedabad",
