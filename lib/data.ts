@@ -31,7 +31,7 @@ export const site = {
 export const hero = {
   kicker: "Full-Stack Software Developer",
   headline: "Building production software from idea to deployment.",
-  sub: "I own the surface where product meets engineering — shipping a production React platform from scratch, owning the API contracts that bind a Laravel backend to an iOS app, and turning ambiguous requirements into systems that hold up in front of real users.",
+  sub: "I own the surface where product meets engineering — sole developer of a production React platform, and the API contract binding its Laravel backend and native iOS app.",
   metrics: [
     { value: "2+", label: "Years shipping production" },
     { value: "Sole", label: "Developer of the platform web app" },
@@ -43,9 +43,8 @@ export const about = {
   kicker: "About",
   title: "From understanding the product to building it.",
   paragraphs: [
-    "I didn't start in an editor. I started in the room where products get decided — coordinating delivery, translating between stakeholders and engineers, and learning exactly why features live or die. That vantage point is the thing most engineers spend years trying to acquire.",
-    "So when I moved into building, I didn't just write code — I owned outcomes. I built a production React platform from an empty repository, defined the API contracts other teams depend on, and made the calls that keep a system coherent as it grows.",
-    "Today I work as the connective tissue of a small, fast team: the person who can scope a feature with a stakeholder in the morning, design the data model at noon, and ship the interface that night. Product thinking and engineering execution aren't separate skills for me — they're the same job.",
+    "I didn't start in an editor — I started in the room where products get decided, coordinating delivery and learning exactly why features live or die. That vantage is what most engineers spend years trying to acquire.",
+    "So when I moved into building, I owned outcomes, not tickets: a production React platform from an empty repo, the API contracts other teams depend on, and the calls that keep a system coherent as it grows. Product thinking and engineering execution aren't separate skills for me — they're the same job.",
   ],
   pillars: [
     {
@@ -86,11 +85,9 @@ export const experience: ExperienceItem[] = [
     summary:
       "Sole developer of the platform's web application — and the primary technical interface between product and an external engineering team.",
     outcomes: [
-      "Built a production React.js web app for a monitoring, automation & SOAR platform from scratch and shipped it independently to live users.",
-      "Designed and documented the REST API contracts for a Laravel backend — endpoint schemas, request/response structures and data flows consumed across web and iOS clients.",
-      "Authored the technical scope documents and feature requirements for a 3-person external iOS and backend team, acting as the single technical interface between product and engineering.",
-      "Drove delivery across web, iOS and backend workstreams through daily progress meetings — surfacing blockers early and consistently hitting release deadlines.",
-      "Used AI-assisted development tooling to accelerate implementation and tighten debugging cycles in a lean team.",
+      "Built a production React.js web app for a monitoring, automation & SOAR platform from scratch — shipped independently to live users.",
+      "Designed and documented the REST API contracts a Laravel backend and native iOS app both build against — endpoint schemas, payloads and data flows.",
+      "Acted as the single technical interface between product and a 3-person external team, driving delivery across web, iOS and backend to deadline.",
     ],
     stack: ["React.js", "Redux", "REST contracts", "Laravel (integration)", "iOS (integration)"],
   },
@@ -130,37 +127,37 @@ export const caseStudy = {
   tagline:
     "A production platform for security operations — orchestrating monitoring, automated response, and cross-device workflows.",
   context:
-    "The flagship product at Attra Technologies: a Security Orchestration, Automation and Response (SOAR) platform that lets operations teams watch their systems, codify response playbooks, and act from anywhere — web or mobile.",
+    "Attra Technologies' flagship product: a SOAR platform that lets operations teams watch their systems, codify response playbooks, and act from anywhere — web or mobile.",
   sections: [
     {
       label: "Challenge",
       title: "One contract, three teams, zero room for drift.",
-      body: "A SOAR platform is only as trustworthy as its consistency. The web app I owned, an outsourced Laravel backend, and a native iOS client all had to agree — exactly — on how monitoring data, automation rules and response actions were shaped and exchanged. Any ambiguity in the contract would surface as a production incident in someone's security workflow.",
+      body: "Three clients — my web app, an outsourced Laravel backend, and a native iOS app — had to agree exactly on every payload, or the mismatch would surface as a production incident in someone's security workflow.",
     },
     {
       label: "Approach",
       title: "Own the interface, not just the implementation.",
-      body: "Rather than treating the frontend as a downstream consumer, I made the API contract a first-class, documented artifact and took ownership of it. I scoped each feature from the operator's actual workflow backward, designed the request/response shapes, and aligned all three teams on a single source of truth before code was written.",
+      body: "I treated the API contract as a first-class, documented artifact and owned it — scoping each feature from the operator's workflow backward and aligning all three teams on one source of truth before code was written.",
     },
     {
       label: "Architecture",
       title: "A React app built to stay coherent under growth.",
-      body: "I built the web application from scratch in React.js with Redux and a deliberate component architecture, structuring state and data flow so the platform's monitoring and automation views stayed coherent as features accumulated. As the sole developer, every architectural decision was mine to make and to live with.",
+      body: "Built from scratch in React with Redux and a deliberate component architecture, so the monitoring and automation views stayed coherent as features piled up — every call mine to make as sole developer.",
     },
     {
       label: "API Design",
       title: "Contracts that made integration predictable.",
-      body: "I designed and documented the REST API contracts for the Laravel backend — endpoint schemas, request/response structures and data flows — written down so the same definitions were consumed identically across web and iOS. The documentation became the working agreement between teams, so 'how does this endpoint behave?' had one answer, not three.",
+      body: "RESTful endpoints with consistent resource modelling and explicit error semantics, documented precisely enough that web and iOS consumed them identically — one answer to 'how does this behave?', not three.",
     },
     {
       label: "Cross-platform Collaboration",
       title: "The single technical interface between product and engineering.",
-      body: "I authored the technical scope documents and feature requirements for a 3-person external iOS and backend team, and drove delivery across all three workstreams through daily progress meetings — surfacing blockers early, aligning everyone on the contract, and consistently hitting release deadlines.",
+      body: "I authored the scope docs for a 3-person external iOS and backend team and drove all three workstreams through daily syncs — keeping everyone aligned on the contract and shipping to deadline.",
     },
     {
       label: "Outcome",
       title: "A platform shipped to live users.",
-      body: "The web application reached live users, built and shipped independently. Delivery stayed on schedule across web, iOS and backend; AI-assisted tooling kept a lean team fast without sacrificing quality — proof that owning the contract, not just the code, is what keeps a multi-team system trustworthy.",
+      body: "Shipped to live users, built and owned independently — proof that owning the contract, not just the code, is what keeps a multi-team system trustworthy.",
     },
   ],
   stack: [
