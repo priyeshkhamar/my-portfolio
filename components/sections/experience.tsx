@@ -1,0 +1,95 @@
+"use client";
+
+import { useRef } from "react";
+import { motion, useScroll, useSpring } from "motion/react";
+import { ArrowUpRight } from "lucide-react";
+import { SectionHeading } from "@/components/section-heading";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import { experience } from "@/lib/data";
+
+export function Experience() {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start 60%", "end 60%"],
+  });
+  const lineScale = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+
+  return (
+    <section id="experience" className="relative px-6 py-28 sm:py-36">
+      <div className="mx-auto w-full max-w-5xl">
+        <SectionHeading
+          kicker="Trajectory"
+          title="Coordinator to engineer — a deliberate climb toward ownership."
+        />
+
+        <div ref={ref} className="relative mt-16 pl-8 sm:pl-10">
+          {/* timeline rail */}
+          <div className="absolute left-[7px] top-2 h-full w-px bg-border sm:left-[11px]" />
+          <motion.div
+            style={{ scaleY: lineScale }}
+            className="absolute left-[7px] top-2 h-full w-px origin-top bg-accent sm:left-[11px]"
+          />
+
+          <div className="space-y-16">
+            {experience.map((item, i) => (
+              <ScrollReveal key={item.role + item.company} delay={0.05}>
+                <article className="relative">
+                  {/* node */}
+                  <span className="absolute -left-8 top-1.5 flex h-4 w-4 items-center justify-center sm:-left-10">
+                    <span className="h-3.5 w-3.5 rounded-full border-2 border-accent bg-bg" />
+                  </span>
+
+                  <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
+                    <h3 className="text-xl font-semibold tracking-tight">
+                      {item.role}
+                    </h3>
+                    <span className="font-mono text-xs text-faint">
+                      {item.period}
+                    </span>
+                  </div>
+
+                  <p className="mt-1 text-sm text-accent">
+                    {item.company}
+                    <span className="text-faint"> · {item.location}</span>
+                  </p>
+
+                  <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-muted">
+                    {item.summary}
+                  </p>
+
+                  <ul className="mt-5 space-y-3">
+                    {item.outcomes.map((o) => (
+                      <li
+                        key={o}
+                        className="flex gap-3 text-sm leading-relaxed text-faint"
+                      >
+                        <ArrowUpRight className="mt-0.5 h-4 w-4 shrink-0 text-accent/70" />
+                        <span>{o}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {item.stack.map((s) => (
+                      <span
+                        key={s}
+                        className="rounded-full border border-border bg-surface px-3 py-1 font-mono text-[11px] text-muted"
+                      >
+                        {s}
+                      </span>
+                    ))}
+                  </div>
+                </article>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
