@@ -85,7 +85,7 @@ export const experience: ExperienceItem[] = [
     summary:
       "Sole developer of the platform's web application — and the primary technical interface between product and an external engineering team.",
     outcomes: [
-      "Built a production React.js web app for a monitoring, automation & SOAR platform from scratch — shipped independently to live users.",
+      "Built CIO 360 — an IT operations, security orchestration & governance platform — as the sole React.js developer, from empty repo to live users.",
       "Designed and documented the REST API contracts a Laravel backend and native iOS app both build against — endpoint schemas, payloads and data flows.",
       "Acted as the single technical interface between product and a 3-person external team, driving delivery across web, iOS and backend to deadline.",
     ],
@@ -123,16 +123,16 @@ export const experience: ExperienceItem[] = [
 
 export const caseStudy = {
   kicker: "Featured Work",
-  name: "Monitoring, Automation & SOAR Platform",
+  name: "CIO 360",
   tagline:
-    "A production platform for security operations — orchestrating monitoring, automated response, and cross-device workflows.",
+    "An IT operations, security orchestration & governance platform — it unifies visibility across an organization's tech stack, then automates the response.",
   context:
-    "Attra Technologies' flagship product: a SOAR platform that lets operations teams watch their systems, codify response playbooks, and act from anywhere — web or mobile.",
+    "Attra Technologies' flagship product. CIO 360 consolidates a fragmented stack of security, identity, backup and compliance tools — Microsoft Entra ID, DefensX, Dropsuite, Secure Connect and more — into one operational view, then goes further: automating workflows and orchestrating security responses so CIOs, CISOs and MSPs can monitor, decide and act from a single place.",
   sections: [
     {
       label: "Challenge",
-      title: "One contract, three teams, zero room for drift.",
-      body: "Three clients — my web app, an outsourced Laravel backend, and a native iOS app — had to agree exactly on every payload, or the mismatch would surface as a production incident in someone's security workflow.",
+      title: "A dozen vendor APIs, one coherent pane of glass.",
+      body: "CIO 360's promise is a single dashboard — but behind it sit many different vendor feeds (Entra ID, DefensX, Dropsuite, Secure Connect, compliance data), each shaped differently, and a web app, Laravel backend and iOS app that all had to present them as one story.",
     },
     {
       label: "Approach",
@@ -142,12 +142,12 @@ export const caseStudy = {
     {
       label: "Architecture",
       title: "A React app built to stay coherent under growth.",
-      body: "Built from scratch in React with Redux and a deliberate component architecture, so the monitoring and automation views stayed coherent as features piled up — every call mine to make as sole developer.",
+      body: "Built from scratch in React with Redux and a deliberate component architecture, so a growing set of integrations and compliance views stayed coherent inside one dashboard — every call mine to make as sole developer.",
     },
     {
       label: "API Design",
-      title: "Contracts that made integration predictable.",
-      body: "RESTful endpoints with consistent resource modelling and explicit error semantics, documented precisely enough that web and iOS consumed them identically — one answer to 'how does this behave?', not three.",
+      title: "Contracts that normalized many feeds into one.",
+      body: "I designed and documented the REST contracts carrying normalized security, identity, compliance and backup data to web and iOS — consistent shapes and explicit error semantics, so both clients consumed every integration identically.",
     },
     {
       label: "Cross-platform Collaboration",
@@ -156,8 +156,8 @@ export const caseStudy = {
     },
     {
       label: "Outcome",
-      title: "A platform shipped to live users.",
-      body: "Shipped to live users, built and owned independently — proof that owning the contract, not just the code, is what keeps a multi-team system trustworthy.",
+      title: "Shipped to the leaders who run on it.",
+      body: "CIO 360 reached live users — IT leaders and MSPs who now monitor their posture, track compliance and watch automated responses from one place — built and owned independently, proof that owning the contract is what keeps a multi-team system trustworthy.",
     },
   ],
   stack: [
@@ -167,9 +167,9 @@ export const caseStudy = {
     "REST API contracts",
     "Laravel (integration)",
     "iOS (integration)",
+    "Entra ID / vendor APIs",
     "MongoDB",
     "MySQL",
-    "AI-assisted tooling",
   ],
 } as const;
 

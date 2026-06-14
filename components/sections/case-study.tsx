@@ -29,7 +29,7 @@ export function CaseStudy() {
                 </p>
               </div>
               <span className="rounded-full border border-accent/30 bg-accent-soft px-3 py-1 font-mono text-[11px] text-accent">
-                Production · SOAR
+                Production · CIO 360
               </span>
             </div>
 
@@ -73,8 +73,8 @@ export function CaseStudy() {
         <ScrollReveal delay={0.1}>
           <p className="mt-10 flex items-center gap-2 text-sm text-faint">
             <ArrowUpRight className="h-4 w-4 text-accent" />
-            Details abstracted to respect confidentiality; architecture and
-            ownership described faithfully.
+            Built at Attra Technologies. Architecture and ownership described
+            faithfully.
           </p>
         </ScrollReveal>
       </div>
