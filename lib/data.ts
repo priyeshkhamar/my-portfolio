@@ -4,14 +4,14 @@
  */
 
 /**
- * Public site URL. Vercel injects VERCEL_PROJECT_PRODUCTION_URL at build time;
- * set NEXT_PUBLIC_SITE_URL once you have a custom domain. Falls back to the
- * placeholder for local development.
+ * Public site URL. Override with NEXT_PUBLIC_SITE_URL if you add a custom
+ * domain later; otherwise production resolves to the canonical Vercel domain
+ * and local development uses localhost.
  */
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ??
-  (process.env.VERCEL_PROJECT_PRODUCTION_URL
-    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+  (process.env.NODE_ENV === "production"
+    ? "https://priyeshkhamar.vercel.app"
     : "http://localhost:3000");
 
 export const site = {
