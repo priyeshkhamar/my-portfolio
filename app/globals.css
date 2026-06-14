@@ -68,12 +68,6 @@ body {
   border-radius: 4px;
 }
 
-/* Hide native cursor when the SmoothCursor custom cursor is active */
-html.cursor-none,
-html.cursor-none * {
-  cursor: none !important;
-}
-
 /* Utility: monospace kicker label */
 .kicker {
   font-family: var(--font-mono);

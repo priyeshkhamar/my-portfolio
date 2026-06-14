@@ -1,131 +1,154 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { motion, useMotionValue, useSpring } from "motion/react";
+import { useEffect, useRef } from "react";
+
+type Pt = { x: number; y: number; vx: number; vy: number };
 
 /**
- * SmoothCursor — a spring-following custom cursor (React Bits "Smooth Cursor").
- * The arrow lags slightly, rotates toward the direction of travel, stretches
- * with speed, and grows + dims over interactive elements. Replaces the native
- * cursor on fine pointers; fully disabled on touch / reduced-motion.
+ * SmoothCursor (React Bits Pro "Smooth Cursor") — a canvas-based flowing trail
+ * that streams behind the native pointer. A chain of spring-coupled points
+ * forms a tapering ribbon that thickens with velocity and glows via blur.
+ * The native cursor is left intact. Disabled on touch / reduced-motion.
  */
-const MOVE_SPRING = { damping: 45, stiffness: 400, mass: 1 };
-const FX_SPRING = { damping: 30, stiffness: 300, mass: 0.8 };
-
-export function SmoothCursor() {
-  const [enabled, setEnabled] = useState(false);
-
-  const x = useMotionValue(-100);
-  const y = useMotionValue(-100);
-  const sx = useSpring(x, MOVE_SPRING);
-  const sy = useSpring(y, MOVE_SPRING);
-
-  const rotate = useMotionValue(0);
-  const srotate = useSpring(rotate, FX_SPRING);
-  const scale = useMotionValue(1);
-  const sscale = useSpring(scale, FX_SPRING);
-
-  const hovering = useRef(false);
-  const idle = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+export function SmoothCursor({
+  pointsCount = 40,
+  spring = 0.4,
+  damping = 0.5,
+  color = "79,140,255",
+  baseWidth = 8,
+  blur = 10,
+  opacity = 1,
+  blend = "source-over" as GlobalCompositeOperation,
+}: {
+  pointsCount?: number;
+  spring?: number;
+  damping?: number;
+  color?: string;
+  baseWidth?: number;
+  blur?: number;
+  opacity?: number;
+  blend?: GlobalCompositeOperation;
+}) {
+  const ref = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const fine = window.matchMedia("(pointer: fine)").matches;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (!fine || reduce) return;
 
-    setEnabled(true);
-    document.documentElement.classList.add("cursor-none");
+    const canvas = ref.current!;
+    const ctx = canvas.getContext("2d")!;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
-    let prev = { x: window.innerWidth / 2, y: window.innerHeight / 2, t: performance.now() };
+    const resize = () => {
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+      canvas.style.width = `${window.innerWidth}px`;
+      canvas.style.height = `${window.innerHeight}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+    resize();
+    window.addEventListener("resize", resize);
+
+    const mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    let speed = 0;
+    let last = { x: mouse.x, y: mouse.y };
+
+    const points: Pt[] = Array.from({ length: pointsCount }, () => ({
+      x: mouse.x,
+      y: mouse.y,
+      vx: 0,
+      vy: 0,
+    }));
 
     const onMove = (e: MouseEvent) => {
-      x.set(e.clientX);
-      y.set(e.clientY);
-
-      const now = performance.now();
-      const dx = e.clientX - prev.x;
-      const dy = e.clientY - prev.y;
-      const dist = Math.hypot(dx, dy);
-      const dt = Math.max(now - prev.t, 1);
-
-      if (dist > 2 && !hovering.current) {
-        const angle = (Math.atan2(dy, dx) * 180) / Math.PI + 90;
-        // keep within ±180 of current to avoid full-circle spins
-        const current = rotate.get();
-        let next = angle;
-        while (next - current > 180) next -= 360;
-        while (next - current < -180) next += 360;
-        rotate.set(next);
-
-        const speed = Math.min(dist / dt, 4);
-        scale.set(1 + speed * 0.12);
-      }
-      prev = { x: e.clientX, y: e.clientY, t: now };
-
-      clearTimeout(idle.current);
-      idle.current = setTimeout(() => {
-        if (!hovering.current) scale.set(1);
-      }, 90);
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+      const dx = mouse.x - last.x;
+      const dy = mouse.y - last.y;
+      // smoothed pointer speed → drives ribbon thickness
+      speed = Math.min(speed * 0.7 + Math.hypot(dx, dy) * 0.3, 60);
+      last = { x: mouse.x, y: mouse.y };
     };
-
-    const onOver = (e: MouseEvent) => {
-      const interactive = (e.target as HTMLElement)?.closest?.(
-        "a, button, [role='button'], input, textarea, [data-cursor='hover']",
-      );
-      if (interactive) {
-        hovering.current = true;
-        rotate.set(0);
-        scale.set(2.4);
-      }
-    };
-    const onOut = (e: MouseEvent) => {
-      const interactive = (e.target as HTMLElement)?.closest?.(
-        "a, button, [role='button'], input, textarea, [data-cursor='hover']",
-      );
-      if (interactive) {
-        hovering.current = false;
-        scale.set(1);
-      }
-    };
-
     window.addEventListener("mousemove", onMove);
-    document.addEventListener("mouseover", onOver);
-    document.addEventListener("mouseout", onOut);
+
+    let raf = 0;
+    let running = true;
+
+    const draw = () => {
+      // integrate the spring chain
+      for (let i = 0; i < points.length; i++) {
+        const p = points[i];
+        const target = i === 0 ? mouse : points[i - 1];
+        p.vx = (p.vx + (target.x - p.x) * spring) * damping;
+        p.vy = (p.vy + (target.y - p.y) * spring) * damping;
+        p.x += p.vx;
+        p.y += p.vy;
+      }
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.globalCompositeOperation = blend;
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+      ctx.shadowBlur = blur;
+      ctx.shadowColor = `rgba(${color},0.9)`;
+      ctx.strokeStyle = `rgba(${color},${opacity})`;
+
+      const velo = Math.min(speed / 14, 2.4); // velocity scaling
+
+      // One continuous smooth curve through the chain (quadratic through
+      // midpoints). Stacking progressively shorter sub-strokes from the head
+      // produces a ribbon that is thick at the pointer and tapers to the tail.
+      const strokeChain = (count: number, width: number) => {
+        if (width < 0.2 || count < 2) return;
+        ctx.lineWidth = width;
+        ctx.beginPath();
+        ctx.moveTo(points[0].x, points[0].y);
+        for (let i = 1; i < count - 1; i++) {
+          const midX = (points[i].x + points[i + 1].x) / 2;
+          const midY = (points[i].y + points[i + 1].y) / 2;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, midX, midY);
+        }
+        ctx.stroke();
+      };
+
+      const scale = 0.45 + velo;
+      strokeChain(points.length, baseWidth * 0.55 * scale);
+      strokeChain(Math.floor(points.length * 0.62), baseWidth * 0.9 * scale);
+      strokeChain(Math.floor(points.length * 0.32), baseWidth * 1.25 * scale);
+
+      // gentle decay so a stationary pointer settles
+      speed *= 0.92;
+
+      if (running) raf = requestAnimationFrame(draw);
+    };
+    raf = requestAnimationFrame(draw);
+
+    const onVis = () => {
+      if (document.hidden) {
+        running = false;
+        cancelAnimationFrame(raf);
+      } else if (!running) {
+        running = true;
+        raf = requestAnimationFrame(draw);
+      }
+    };
+    document.addEventListener("visibilitychange", onVis);
 
     return () => {
-      document.documentElement.classList.remove("cursor-none");
-      clearTimeout(idle.current);
+      running = false;
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", onMove);
-      document.removeEventListener("mouseover", onOver);
-      document.removeEventListener("mouseout", onOut);
+      document.removeEventListener("visibilitychange", onVis);
     };
-  }, [x, y, rotate, scale]);
-
-  if (!enabled) return null;
+  }, [pointsCount, spring, damping, color, baseWidth, blur, opacity, blend]);
 
   return (
-    <motion.div
+    <canvas
+      ref={ref}
       aria-hidden
-      className="pointer-events-none fixed left-0 top-0 z-[100]"
-      style={{ x: sx, y: sy }}
-    >
-      <motion.div style={{ rotate: srotate, scale: sscale }} className="-translate-x-1/2 -translate-y-1/2">
-        <svg
-          width="22"
-          height="26"
-          viewBox="0 0 22 26"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M11 0.5 L21 25 L11 19.5 L1 25 Z"
-            fill="#EDEDED"
-            stroke="#0A0A0A"
-            strokeWidth="1.25"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </motion.div>
-    </motion.div>
+      className="pointer-events-none fixed inset-0 z-[68]"
+    />
   );
 }
