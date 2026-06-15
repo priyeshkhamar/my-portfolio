@@ -15,7 +15,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
   return (
     <SmoothScroll>
       <ScrollProgress />
-      <SmoothCursor />
+      <SmoothCursor baseRadius={35} />
       <ClickSpark />
       <Nav onOpenCommand={() => setOpen(true)} />
       <CommandMenu open={open} setOpen={setOpen} />
