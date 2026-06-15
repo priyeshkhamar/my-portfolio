@@ -13,7 +13,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden px-6 pt-28"
+      className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden px-6 pb-28 pt-28"
     >
       {/* interactive particle field */}
       <div aria-hidden className="absolute inset-0 -z-10">
@@ -97,7 +97,7 @@ export function Hero() {
         transition={{ delay: 1.4, duration: 1 }}
         className="pointer-events-none absolute bottom-8 left-1/2 -translate-x-1/2 font-mono text-[10px] uppercase tracking-[0.3em] text-faint"
       >
-        Scroll
+        {/* Scroll */}
       </motion.div>
 
       <span className="sr-only">
