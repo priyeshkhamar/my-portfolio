@@ -11,7 +11,7 @@ type P = { x: number; y: number; vx: number; vy: number; r: number };
  */
 export function Particles({
   density = 64,
-  color = "79,140,255",
+  color = "200,247,81",
   linkDist = 130,
 }: {
   density?: number;

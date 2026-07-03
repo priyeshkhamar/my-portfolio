@@ -21,10 +21,16 @@ export function Experience() {
 
   return (
     <section id="experience" className="relative px-6 py-28 sm:py-36">
-      <div className="mx-auto w-full max-w-5xl">
+      <div className="mx-auto w-full max-w-6xl">
         <SectionHeading
+          index="02"
           kicker="Trajectory"
-          title="From coordinator to engineer."
+          title={
+            <>
+              From coordinator{" "}
+              <span className="serif-accent text-accent">to engineer.</span>
+            </>
+          }
         />
 
         <div ref={ref} className="relative mt-16 pl-8 sm:pl-10">
@@ -32,23 +38,23 @@ export function Experience() {
           <div className="absolute left-[7px] top-2 h-full w-px bg-border sm:left-[11px]" />
           <motion.div
             style={{ scaleY: lineScale }}
-            className="absolute left-[7px] top-2 h-full w-px origin-top bg-accent sm:left-[11px]"
+            className="absolute left-[7px] top-2 h-full w-px origin-top bg-gradient-to-b from-accent to-accent-2 sm:left-[11px]"
           />
 
-          <div className="space-y-16">
-            {experience.map((item, i) => (
+          <div className="space-y-14">
+            {experience.map((item) => (
               <ScrollReveal key={item.role + item.company} delay={0.05}>
-                <article className="relative">
+                <article className="group relative rounded-2xl border border-transparent p-5 transition-colors hover:border-border hover:bg-surface/60 sm:-ml-5">
                   {/* node */}
-                  <span className="absolute -left-8 top-1.5 flex h-4 w-4 items-center justify-center sm:-left-10">
-                    <span className="h-3.5 w-3.5 rounded-full border-2 border-accent bg-bg" />
+                  <span className="absolute -left-8 top-7 flex h-4 w-4 items-center justify-center sm:-left-[26px]">
+                    <span className="h-3.5 w-3.5 rounded-full border-2 border-accent bg-bg transition-transform group-hover:scale-125" />
                   </span>
 
                   <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
                     <h3 className="text-xl font-semibold tracking-tight">
                       {item.role}
                     </h3>
-                    <span className="font-mono text-xs text-faint">
+                    <span className="rounded-full border border-border bg-surface px-3 py-1 font-mono text-[11px] text-faint">
                       {item.period}
                     </span>
                   </div>
@@ -78,7 +84,7 @@ export function Experience() {
                     {item.stack.map((s) => (
                       <span
                         key={s}
-                        className="rounded-full border border-border bg-surface px-3 py-1 font-mono text-[11px] text-muted"
+                        className="rounded-full border border-border bg-surface px-3 py-1 font-mono text-[11px] text-muted transition-colors group-hover:border-border-strong"
                       >
                         {s}
                       </span>

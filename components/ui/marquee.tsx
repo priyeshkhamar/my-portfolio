@@ -11,25 +11,32 @@ import {
   useSpring,
   wrap,
 } from "motion/react";
+import { cn } from "@/lib/utils";
 
 /**
  * Marquee — a horizontally scrolling strip that drifts on its own and speeds up
  * (and flips direction) with scroll velocity. (React Bits "Scroll Velocity".)
+ * `direction=-1` reverses the base drift; `outline` renders hollow display text.
  */
 export function Marquee({
   items,
   baseSpeed = 40,
+  direction = 1,
+  outline = false,
+  className,
 }: {
   items: string[];
   baseSpeed?: number;
+  direction?: 1 | -1;
+  outline?: boolean;
+  className?: string;
 }) {
   const baseX = useMotionValue(0);
   const { scrollY } = useScroll();
   const scrollVelocity = useVelocity(scrollY);
   const smooth = useSpring(scrollVelocity, { damping: 50, stiffness: 400 });
   const factor = useTransform(smooth, [0, 1000], [0, 5], { clamp: false });
-  const directionFactor = useRef(1);
-  const wrapper = useRef<HTMLDivElement>(null);
+  const directionFactor = useRef(direction);
 
   const x = useTransform(baseX, (v) => `${wrap(-50, 0, v)}%`);
 
@@ -39,10 +46,11 @@ export function Marquee({
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) return;
 
-    let moveBy = directionFactor.current * (baseSpeed / 1000) * (delta / 16.6);
+    let moveBy =
+      directionFactor.current * (baseSpeed / 1000) * (delta / 16.6);
     const f = factor.get();
-    if (f < 0) directionFactor.current = -1;
-    else if (f > 0) directionFactor.current = 1;
+    if (f < 0) directionFactor.current = -direction as 1 | -1;
+    else if (f > 0) directionFactor.current = direction;
     moveBy += directionFactor.current * moveBy * Math.abs(f);
     baseX.set(baseX.get() + moveBy * 0.05);
   });
@@ -51,14 +59,24 @@ export function Marquee({
 
   return (
     <div
-      ref={wrapper}
-      className="relative flex overflow-hidden border-y border-border py-6 [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]"
+      className={cn(
+        "relative flex overflow-hidden py-4 [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]",
+        className,
+      )}
     >
-      <motion.div className="flex shrink-0 gap-8 whitespace-nowrap pr-8" style={{ x }}>
+      <motion.div className="flex shrink-0 gap-10 whitespace-nowrap pr-10" style={{ x }}>
         {row.map((item, i) => (
-          <span key={i} className="flex items-center gap-8 text-2xl font-medium tracking-tight text-faint">
+          <span
+            key={i}
+            className={cn(
+              "flex items-center gap-10 text-[clamp(1.75rem,4vw,3rem)] font-semibold uppercase tracking-tight",
+              outline ? "text-outline" : "text-faint",
+            )}
+          >
             {item}
-            <span className="text-accent">✦</span>
+            <span className="text-accent" style={{ WebkitTextStroke: 0 }}>
+              ✦
+            </span>
           </span>
         ))}
       </motion.div>

@@ -1,25 +1,32 @@
 import { Marquee } from "@/components/ui/marquee";
 
-const TECH = [
+const ROW_A = [
   "React.js",
   "Redux",
   "Node.js",
   "Express.js",
   "REST APIs",
+  "MongoDB",
+];
+
+const ROW_B = [
+  "MySQL",
   "Laravel",
   "iOS",
-  "MongoDB",
-  "MySQL",
   "API Contracts",
   "JavaScript",
   "Git",
 ];
 
-/** Scroll-velocity marquee of the working stack, between sections. */
+/** Dual scroll-velocity marquee of the working stack, between sections. */
 export function TechMarquee() {
   return (
-    <section aria-label="Technology stack" className="py-10">
-      <Marquee items={TECH} />
+    <section
+      aria-label="Technology stack"
+      className="border-y border-border py-8"
+    >
+      <Marquee items={ROW_A} outline direction={1} />
+      <Marquee items={ROW_B} direction={-1} />
     </section>
   );
 }

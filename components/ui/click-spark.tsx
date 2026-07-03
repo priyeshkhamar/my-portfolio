@@ -9,7 +9,7 @@ type Spark = { x: number; y: number; start: number };
  * click, site-wide. Canvas overlay, pointer-events-none. (React Bits-style.)
  */
 export function ClickSpark({
-  color = "#4f8cff",
+  color = "#c8f751",
   count = 9,
   radius = 22,
   duration = 420,

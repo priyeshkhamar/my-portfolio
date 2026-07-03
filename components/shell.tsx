@@ -6,7 +6,7 @@ import { CommandMenu } from "@/components/command-menu";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { ClickSpark } from "@/components/ui/click-spark";
-import { SmoothCursor } from "@/components/ui/smooth-cursor";
+import { TargetCursor } from "@/components/ui/target-cursor";
 
 /** Client shell: wires scroll progress, nav, smooth scroll, ⌘K and cursor FX. */
 export function Shell({ children }: { children: React.ReactNode }) {
@@ -15,8 +15,9 @@ export function Shell({ children }: { children: React.ReactNode }) {
   return (
     <SmoothScroll>
       <ScrollProgress />
-      <SmoothCursor baseRadius={35} />
+      <TargetCursor />
       <ClickSpark />
+      <div aria-hidden className="noise-overlay" />
       <Nav onOpenCommand={() => setOpen(true)} />
       <CommandMenu open={open} setOpen={setOpen} />
       <main>{children}</main>
