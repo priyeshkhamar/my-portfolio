@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
-  output: 'export',
+  ...(process.env.CF_PAGES ? { output: 'export' } : {}),
 };
 
 export default nextConfig;
