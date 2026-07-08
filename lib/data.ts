@@ -19,7 +19,7 @@ export const site = {
   role: "Full-Stack Software Developer",
   tagline: "Building production software from idea to deployment.",
   location: "Ahmedabad, India",
-  email: "priyeshkhamar76@gmail.com",
+  email: "dev.priyeshkhamar@gmail.com",
   phone: "+91 95582 77906",
   github: "https://github.com/priyeshkhamar",
   linkedin: "https://linkedin.com/in/priyeshkhamar",
