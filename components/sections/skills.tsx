@@ -4,6 +4,7 @@ import { SectionHeading } from "@/components/section-heading";
 import { SpotlightCard } from "@/components/ui/spotlight-card";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { skillGroups } from "@/lib/data";
+import { TechLabel } from "@/lib/tech-icons";
 
 export function Skills() {
   return (
@@ -45,7 +46,7 @@ export function Skills() {
                       key={item}
                       className="rounded-lg border border-border bg-bg px-2.5 py-1.5 text-[13px] text-muted transition-colors hover:border-accent/40 hover:bg-accent-soft hover:text-text"
                     >
-                      {item}
+                      <TechLabel name={item} />
                     </span>
                   ))}
                 </div>

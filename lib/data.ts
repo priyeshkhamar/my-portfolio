@@ -32,14 +32,14 @@ export const site = {
 export const hero = {
   kicker: "Full-Stack Software Developer",
   headline: "Building production software from idea to deployment.",
-  sub: "I work across product and engineering — sole developer of a production React platform, and I maintain the API contract between its Laravel backend and native iOS app.",
+  sub: "I work across product and engineering — sole developer of a production React platform, and I define the REST API contracts its Laravel backend and native iOS app build against.",
 } as const;
 
 export const about = {
   kicker: "About",
   title: "From understanding the product to building it.",
   paragraphs: [
-    "I didn't start in an editor. I started by coordinating delivery between stakeholders and engineers, which is where I learned how products actually get scoped and shipped.",
+    "My path into engineering ran through the product side. After an internship shipping ERP modules, I spent six months coordinating delivery between stakeholders and external engineers — where I learned how products actually get scoped, negotiated and shipped.",
     "When I moved into development, I built a production React platform from an empty repo and took on the API contracts other teams rely on. Having seen the product side first, I try to keep the why in view, not just the how.",
   ],
   pillars: [
@@ -145,8 +145,6 @@ export type Project = {
   highlights: string[];
   stack: string[];
   links?: { label: string; href: string }[];
-  /** Which stylized mockup to render on the project card. */
-  mockup: "cio360" | "portfolio" | "erp";
 };
 
 export const projects: Project[] = [
@@ -173,7 +171,6 @@ export const projects: Project[] = [
       "MongoDB",
       "MySQL",
     ],
-    mockup: "cio360",
   },
   {
     name: "This portfolio",
@@ -181,18 +178,17 @@ export const projects: Project[] = [
     tagline:
       "The site you're on — designed and built from scratch as a playground for modern front-end craft.",
     description:
-      "A statically generated Next.js site with a custom canvas target-lock cursor, scroll-velocity marquees, aurora + particle backdrops, a ⌘K command palette and scroll-choreographed reveals — all hand-rolled, no component kits.",
+      "A statically generated Next.js site with a custom cursor engine, a procedural 3D hero, a scroll-pinned project deck, scroll-velocity marquees, a ⌘K command palette and scroll-choreographed reveals — every effect written from scratch.",
     highlights: [
-      "Custom cursor engine: corner brackets that lock onto interactive elements like a viewfinder.",
-      "Every effect built by hand with Motion + canvas — decrypt text, count-up metrics, spotlight tilt cards.",
+      "Custom dot-and-ring cursor and scroll-pinned card deck, hand-rolled with Motion + DOM.",
+      "Procedural particle-sphere hero in three.js — lazy-loaded so first paint stays instant.",
       "100% static output, reduced-motion aware, keyboard navigable and SEO-complete.",
     ],
-    stack: ["Next.js 15", "React 19", "TypeScript", "Tailwind CSS 4", "Motion", "Canvas API"],
+    stack: ["Next.js 15", "React 19", "TypeScript", "Tailwind CSS 4", "Motion", "Three.js / R3F"],
     links: [
       { label: "GitHub", href: "https://github.com/priyeshkhamar/my-portfolio" },
       { label: "Live", href: "https://priyeshkhamar.vercel.app" },
     ],
-    mockup: "portfolio",
   },
   {
     name: "ERP Modules — Asset & Recruitment",
@@ -207,7 +203,6 @@ export const projects: Project[] = [
       "End-to-end testing before release.",
     ],
     stack: ["Angular", ".NET", "REST", "SQL"],
-    mockup: "erp",
   },
 ];
 

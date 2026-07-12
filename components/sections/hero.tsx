@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { motion } from "motion/react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Particles } from "@/components/ui/particles";
@@ -12,6 +13,12 @@ import { ShinyText } from "@/components/ui/shiny-text";
 import { hero, site } from "@/lib/data";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
+
+// Lazy: three.js only downloads after hydration, and only mounts on desktop.
+const Hero3D = dynamic(
+  () => import("@/components/ui/hero-3d").then((m) => m.Hero3D),
+  { ssr: false },
+);
 
 export function Hero() {
   return (
@@ -35,6 +42,14 @@ export function Hero() {
         className="pointer-events-none absolute left-1/2 top-1/2 -z-10 w-full -translate-x-1/2 -translate-y-1/2 select-none text-center font-semibold uppercase tracking-[-0.04em] text-outline opacity-[0.14] text-[clamp(6rem,18vw,16rem)] leading-none"
       >
         Dev
+      </div>
+
+      {/* 3D centerpiece — floats over the hero's empty right half */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute right-[-2%] top-1/2 hidden h-[560px] w-[560px] -translate-y-1/2 lg:block xl:right-[2%]"
+      >
+        <Hero3D />
       </div>
 
       <div className="mx-auto w-full max-w-6xl">

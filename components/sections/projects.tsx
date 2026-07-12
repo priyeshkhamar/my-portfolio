@@ -2,19 +2,9 @@
 
 import { ArrowUpRight, Check } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
-import {
-  Cio360Mockup,
-  PortfolioMockup,
-  ErpMockup,
-} from "@/components/ui/project-mockups";
 import { projects, type Project } from "@/lib/data";
+import { TechLabel } from "@/lib/tech-icons";
 import { cn } from "@/lib/utils";
-
-const MOCKUPS = {
-  cio360: Cio360Mockup,
-  portfolio: PortfolioMockup,
-  erp: ErpMockup,
-} as const;
 
 /**
  * Projects — a scroll-pinned card deck. Each card sticks below the nav with a
@@ -47,16 +37,14 @@ export function Projects() {
 }
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
-  const Mockup = MOCKUPS[project.mockup];
-
   const card = (
     <div
       className={cn(
-        "glare-sweep relative grid gap-10 overflow-hidden bg-surface p-7 sm:p-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-12",
+        "glare-sweep relative grid gap-10 overflow-hidden bg-surface p-7 sm:p-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14",
         project.featured ? "rounded-[17px]" : "rounded-2xl border border-border",
       )}
     >
-      {/* text column */}
+      {/* main column */}
       <div>
         <div className="flex flex-wrap items-center gap-3">
           <span
@@ -78,29 +66,12 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           {project.name}
           <span className="text-accent">.</span>
         </h3>
-        <p className="mt-3 text-pretty leading-relaxed text-muted">
+        <p className="mt-3 text-pretty text-lg leading-relaxed text-muted">
+          {project.tagline}
+        </p>
+        <p className="mt-3 text-pretty leading-relaxed text-faint">
           {project.description}
         </p>
-
-        <ul className="mt-5 space-y-2.5">
-          {project.highlights.slice(0, 3).map((h) => (
-            <li key={h} className="flex gap-2.5 text-sm leading-relaxed text-faint">
-              <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent/70" />
-              <span>{h}</span>
-            </li>
-          ))}
-        </ul>
-
-        <div className="mt-6 flex flex-wrap gap-2">
-          {project.stack.map((s) => (
-            <span
-              key={s}
-              className="rounded-full border border-border bg-bg px-3 py-1 font-mono text-[11px] text-muted transition-colors hover:border-accent/40 hover:text-text"
-            >
-              {s}
-            </span>
-          ))}
-        </div>
 
         {project.links && (
           <div className="mt-6 flex flex-wrap gap-3">
@@ -120,17 +91,29 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         )}
       </div>
 
-      {/* mockup column — CSS 3D: rests tilted, straightens on hover */}
-      <div className="group/mock -order-1 lg:order-none" style={{ perspective: "1400px" }}>
-        <div
-          className="transition-transform duration-700 ease-out will-change-transform [transform:rotateY(-8deg)_rotateX(4deg)] group-hover/mock:[transform:rotateY(0deg)_rotateX(0deg)]"
-        >
-          <Mockup />
+      {/* highlights + stack column */}
+      <div className="lg:border-l lg:border-border lg:pl-10">
+        <p className="font-mono text-[11px] uppercase tracking-widest text-faint">
+          What I owned
+        </p>
+        <ul className="mt-4 space-y-2.5">
+          {project.highlights.map((h) => (
+            <li key={h} className="flex gap-2.5 text-sm leading-relaxed text-faint">
+              <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent/70" />
+              <span>{h}</span>
+            </li>
+          ))}
+        </ul>
+        <div className="mt-6 flex flex-wrap gap-2">
+          {project.stack.map((s) => (
+            <span
+              key={s}
+              className="rounded-full border border-border bg-bg px-3 py-1 font-mono text-[11px] text-muted transition-colors hover:border-accent/40 hover:text-text"
+            >
+              <TechLabel name={s} iconClassName="h-3 w-3 shrink-0 opacity-80" />
+            </span>
+          ))}
         </div>
-        <div
-          aria-hidden
-          className="mx-auto mt-6 h-4 w-3/4 rounded-[100%] bg-accent/10 blur-xl"
-        />
       </div>
     </div>
   );

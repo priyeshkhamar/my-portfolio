@@ -7,6 +7,7 @@ import { GraduationCap, Award } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { experience, education } from "@/lib/data";
+import { TechLabel } from "@/lib/tech-icons";
 
 export function Experience() {
   const ref = useRef<HTMLDivElement>(null);
@@ -87,7 +88,7 @@ export function Experience() {
                         key={s}
                         className="rounded-full border border-border bg-surface px-3 py-1 font-mono text-[11px] text-muted transition-colors group-hover:border-border-strong"
                       >
-                        {s}
+                        <TechLabel name={s} iconClassName="h-3 w-3 shrink-0 opacity-80" />
                       </span>
                     ))}
                   </div>

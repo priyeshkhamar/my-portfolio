@@ -12,6 +12,7 @@ import {
   wrap,
 } from "motion/react";
 import { cn } from "@/lib/utils";
+import { getTechIcon } from "@/lib/tech-icons";
 
 /**
  * Marquee — a horizontally scrolling strip that drifts on its own and speeds up
@@ -65,20 +66,28 @@ export function Marquee({
       )}
     >
       <motion.div className="flex shrink-0 gap-10 whitespace-nowrap pr-10" style={{ x }}>
-        {row.map((item, i) => (
-          <span
-            key={i}
-            className={cn(
-              "flex items-center gap-10 text-[clamp(1.75rem,4vw,3rem)] font-semibold uppercase tracking-tight",
-              outline ? "text-outline" : "text-faint",
-            )}
-          >
-            {item}
-            <span className="text-accent" style={{ WebkitTextStroke: 0 }}>
-              ✦
+        {row.map((item, i) => {
+          const Icon = getTechIcon(item);
+          return (
+            <span
+              key={i}
+              className={cn(
+                "flex items-center gap-10 text-[clamp(1.75rem,4vw,3rem)] font-semibold uppercase tracking-tight",
+                outline ? "text-outline" : "text-faint",
+              )}
+            >
+              <span className="flex items-center gap-4">
+                {Icon && (
+                  <Icon className="h-[0.72em] w-[0.72em] shrink-0 text-accent/70" />
+                )}
+                {item}
+              </span>
+              <span className="text-accent" style={{ WebkitTextStroke: 0 }}>
+                ✦
+              </span>
             </span>
-          </span>
-        ))}
+          );
+        })}
       </motion.div>
     </div>
   );
