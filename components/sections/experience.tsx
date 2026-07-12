@@ -3,9 +3,10 @@
 import { useRef } from "react";
 import { motion, useScroll, useSpring } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
+import { GraduationCap, Award } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
-import { experience } from "@/lib/data";
+import { experience, education } from "@/lib/data";
 
 export function Experience() {
   const ref = useRef<HTMLDivElement>(null);
@@ -94,6 +95,37 @@ export function Experience() {
               </ScrollReveal>
             ))}
           </div>
+        </div>
+
+        {/* Education & certification */}
+        <div className="mt-16 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2">
+          {education.map((e, i) => (
+            <ScrollReveal key={e.title} delay={i * 0.06}>
+              <div className="group flex h-full gap-4 bg-surface p-6 transition-colors hover:bg-surface-2">
+                <span className="mt-0.5 text-accent">
+                  {e.kind === "Education" ? (
+                    <GraduationCap className="h-5 w-5" />
+                  ) : (
+                    <Award className="h-5 w-5" />
+                  )}
+                </span>
+                <div>
+                  <p className="font-mono text-[11px] uppercase tracking-widest text-faint">
+                    {e.kind}
+                  </p>
+                  <h3 className="mt-2 text-sm font-medium text-text">
+                    {e.title}
+                  </h3>
+                  <p className="mt-1 text-sm text-muted">
+                    {e.org} <span className="text-faint">· {e.location}</span>
+                  </p>
+                  <p className="mt-1 font-mono text-[11px] text-faint">
+                    {e.period}
+                  </p>
+                </div>
+              </div>
+            </ScrollReveal>
+          ))}
         </div>
       </div>
     </section>

@@ -61,7 +61,7 @@ export function SpotlightCard({
           : undefined
       }
       className={cn(
-        "group relative overflow-hidden rounded-2xl border border-border bg-surface transition-colors duration-300 hover:border-border-strong",
+        "group glare-sweep relative overflow-hidden rounded-2xl border border-border bg-surface transition-colors duration-300 hover:border-border-strong",
         className,
       )}
     >

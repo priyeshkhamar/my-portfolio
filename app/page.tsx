@@ -3,7 +3,7 @@ import { Hero } from "@/components/sections/hero";
 import { About } from "@/components/sections/about";
 import { Experience } from "@/components/sections/experience";
 import { TechMarquee } from "@/components/sections/tech-marquee";
-import { CaseStudy } from "@/components/sections/case-study";
+import { Projects } from "@/components/sections/projects";
 import { Skills } from "@/components/sections/skills";
 import { Philosophy } from "@/components/sections/philosophy";
 import { Contact } from "@/components/sections/contact";
@@ -16,7 +16,7 @@ export default function Page() {
       <About />
       <Experience />
       <TechMarquee />
-      <CaseStudy />
+      <Projects />
       <Skills />
       <Philosophy />
       <Contact />

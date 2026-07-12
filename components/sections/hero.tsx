@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Particles } from "@/components/ui/particles";
 import { DecryptedText } from "@/components/ui/decrypted-text";
+import { VariableProximity } from "@/components/ui/variable-proximity";
 import { StarBorder } from "@/components/ui/star-border";
 import { Magnetic } from "@/components/ui/magnetic";
 import { CountUp } from "@/components/ui/count-up";
@@ -49,14 +50,20 @@ export function Hero() {
               <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
             </span>
             <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent">
-              Open to full-stack roles
+              <DecryptedText text="Open to full-stack roles" />
             </span>
           </span>
         </motion.div>
 
         <h1 className="max-w-5xl text-balance text-[clamp(2.75rem,8vw,6.5rem)] font-semibold leading-[0.98] tracking-[-0.035em]">
-          <DecryptedText text="Full-stack developer" />
-          <br />
+          <motion.span
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.15, ease: EASE }}
+            className="block"
+          >
+            <VariableProximity text="Full-stack developer" />
+          </motion.span>
           <motion.span
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
@@ -83,7 +90,7 @@ export function Hero() {
           className="mt-10 flex flex-wrap items-center gap-3"
         >
           <Magnetic>
-            <StarBorder href="#work">
+            <StarBorder href="#projects">
               View featured work
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </StarBorder>

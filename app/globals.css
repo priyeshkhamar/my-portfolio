@@ -237,6 +237,27 @@ body {
   }
 }
 
+/* Glare sweep — diagonal sheen crosses the card on hover */
+.glare-sweep::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.055) 50%,
+    transparent 60%
+  );
+  background-size: 250% 100%;
+  background-position: 130% 0;
+  transition: background-position 0.9s var(--ease-out-expo);
+}
+.glare-sweep:hover::after {
+  background-position: -30% 0;
+}
+
 /* Rotating circular badge text */
 .spin-slow {
   animation: spin-slow 14s linear infinite;

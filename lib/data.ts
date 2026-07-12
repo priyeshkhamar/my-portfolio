@@ -1,6 +1,7 @@
 /**
  * Single source of truth for all portfolio content.
- * Copy is written for a senior, product-owning engineer — impact over responsibility.
+ * Synced with Priyesh_Khamar_Resume.pdf — copy is written for a senior,
+ * product-owning engineer: impact over responsibility.
  */
 
 /**
@@ -25,18 +26,13 @@ export const site = {
   linkedin: "https://linkedin.com/in/priyeshkhamar",
   url: siteUrl,
   description:
-    "Full-Stack Software Developer focused on shipping production React applications, maintaining API contracts, and coordinating with backend and iOS teams from idea to deployment.",
+    "Full-Stack Software Developer with 2+ years shipping production web applications — sole developer of a live monitoring, automation and SOAR platform web app in React.js, owning API contracts across a Laravel backend and native iOS app.",
 } as const;
 
 export const hero = {
   kicker: "Full-Stack Software Developer",
   headline: "Building production software from idea to deployment.",
   sub: "I work across product and engineering — sole developer of a production React platform, and I maintain the API contract between its Laravel backend and native iOS app.",
-  metrics: [
-    { value: "2+", label: "Years shipping production" },
-    { value: "Sole", label: "Developer of the platform web app" },
-    { value: "3", label: "Workstreams · web · iOS · backend" },
-  ],
 } as const;
 
 export const about = {
@@ -78,21 +74,23 @@ export type ExperienceItem = {
 
 export const experience: ExperienceItem[] = [
   {
-    period: "July 2024 — Present",
+    period: "Jan 2024 — Present",
     role: "Software Developer",
     company: "Attra Technologies",
     location: "Ahmedabad",
     summary:
-      "Sole developer of the platform's web application, and the main technical point of contact between product and an external engineering team.",
+      "Sole developer of the platform's web application, and the primary technical interface between product and an external engineering team.",
     outcomes: [
-      "Built CIO 360 — an IT operations, security orchestration & governance platform — as the sole React.js developer, from empty repo to live users.",
-      "Designed and documented the REST API contracts a Laravel backend and native iOS app both build against — endpoint schemas, payloads and data flows.",
-      "Worked as the main technical point of contact between product and a 3-person external team, helping coordinate delivery across web, iOS and backend.",
+      "Sole developer of a production React.js web application for a monitoring, automation and SOAR platform — built from scratch and independently shipped to live users.",
+      "Designed and documented REST API contracts for a Laravel backend — endpoint schemas, request/response structures and data flows consumed across web and iOS clients.",
+      "Authored technical scope documents and feature requirements for a 3-person external iOS and backend team, acting as the primary technical interface between product and engineering.",
+      "Drove feature delivery across web, iOS and backend workstreams through daily progress meetings — surfacing blockers early and consistently hitting release deadlines.",
+      "Applied AI-assisted development tooling to accelerate implementation, tighten debugging cycles and maintain code quality in a lean team setup.",
     ],
     stack: ["React.js", "Redux", "REST contracts", "Laravel (integration)", "iOS (integration)"],
   },
   {
-    period: "July 2024 — Jan 2026",
+    period: "Jul 2023 — Dec 2023",
     role: "Project Coordinator",
     company: "Attra Technologies",
     location: "Ahmedabad",
@@ -106,7 +104,7 @@ export const experience: ExperienceItem[] = [
     stack: ["Agile / Scrum", "Delivery", "Stakeholders", "Documentation"],
   },
   {
-    period: "Jan 2023 — July 2023",
+    period: "Jan 2023 — Jul 2023",
     role: "Software Developer Intern",
     company: "Virtual Coders",
     location: "Ahmedabad",
@@ -121,57 +119,97 @@ export const experience: ExperienceItem[] = [
   },
 ];
 
-export const caseStudy = {
-  kicker: "Featured Work",
-  name: "CIO 360",
-  tagline:
-    "An IT operations, security orchestration & governance platform — it unifies visibility across an organization's tech stack, then automates the response.",
-  context:
-    "Attra Technologies' flagship product. CIO 360 consolidates a fragmented stack of security, identity, backup and compliance tools — Microsoft Entra ID, DefensX, Dropsuite, Secure Connect and more — into one operational view, then goes further: automating workflows and orchestrating security responses so CIOs, CISOs and MSPs can monitor, decide and act from a single place.",
-  sections: [
-    {
-      label: "Challenge",
-      title: "A dozen vendor APIs, one coherent pane of glass.",
-      body: "CIO 360's promise is a single dashboard — but behind it sit many different vendor feeds (Entra ID, DefensX, Dropsuite, Secure Connect, compliance data), each shaped differently, and a web app, Laravel backend and iOS app that all had to present them as one story.",
-    },
-    {
-      label: "Approach",
-      title: "Define the contract before building against it.",
-      body: "I documented the API contract up front and kept it as the shared reference — agreeing the data shapes with the backend and iOS teams before building each feature.",
-    },
-    {
-      label: "Architecture",
-      title: "A React app that stays organized as it grows.",
-      body: "Built from scratch in React with Redux and a clear component structure, so a growing set of integrations and compliance views stayed organized within one dashboard.",
-    },
-    {
-      label: "API Design",
-      title: "Contracts that normalized many feeds into one.",
-      body: "I designed and documented the REST contracts carrying normalized security, identity, compliance and backup data to web and iOS — consistent shapes and explicit error semantics, so both clients consumed every integration identically.",
-    },
-    {
-      label: "Cross-platform Collaboration",
-      title: "The point of contact between product and engineering.",
-      body: "I wrote the scope docs for a 3-person external iOS and backend team and used daily syncs to keep the work aligned across web, iOS and backend.",
-    },
-    {
-      label: "Outcome",
-      title: "In production with real users.",
-      body: "CIO 360 is in production — used by IT teams and MSPs to monitor their posture, track compliance and watch automated responses from one place. I built and shipped the web app independently.",
-    },
-  ],
-  stack: [
-    "React.js",
-    "Redux",
-    "Component Architecture",
-    "REST API contracts",
-    "Laravel (integration)",
-    "iOS (integration)",
-    "Entra ID / vendor APIs",
-    "MongoDB",
-    "MySQL",
-  ],
-} as const;
+export const education = [
+  {
+    kind: "Education",
+    title: "B.Tech, Computer Science & Engineering",
+    org: "Indus University",
+    location: "Ahmedabad, India",
+    period: "Graduated May 2024",
+  },
+  {
+    kind: "Certification",
+    title: "MERN Stack Development",
+    org: "TOPS Technologies",
+    location: "Ahmedabad, India",
+    period: "Nov 2023 — Oct 2024",
+  },
+] as const;
+
+export type Project = {
+  featured?: boolean;
+  name: string;
+  status: string;
+  tagline: string;
+  description: string;
+  highlights: string[];
+  stack: string[];
+  links?: { label: string; href: string }[];
+  /** Which stylized mockup to render on the project card. */
+  mockup: "cio360" | "portfolio" | "erp";
+};
+
+export const projects: Project[] = [
+  {
+    featured: true,
+    name: "CIO 360",
+    status: "Production · Attra Technologies",
+    tagline:
+      "A monitoring, automation & SOAR platform — one operational view across an organization's tech stack, with automated response on top.",
+    description:
+      "CIO 360 consolidates a fragmented stack of security, identity, backup and compliance tools — Microsoft Entra ID, DefensX, Dropsuite, Secure Connect and more — into one dashboard, then orchestrates security responses so CIOs, CISOs and MSPs can monitor, decide and act from a single place. I built and shipped the entire web application independently.",
+    highlights: [
+      "Sole React.js developer — from empty repo to live users.",
+      "Designed and documented the REST API contracts a Laravel backend and native iOS app both build against.",
+      "Normalized a dozen vendor feeds into consistent data shapes with explicit error semantics, consumed identically by web and iOS.",
+      "Primary technical interface between product and a 3-person external engineering team.",
+    ],
+    stack: [
+      "React.js",
+      "Redux",
+      "REST API contracts",
+      "Laravel (integration)",
+      "iOS (integration)",
+      "MongoDB",
+      "MySQL",
+    ],
+    mockup: "cio360",
+  },
+  {
+    name: "This portfolio",
+    status: "Open source · You're looking at it",
+    tagline:
+      "The site you're on — designed and built from scratch as a playground for modern front-end craft.",
+    description:
+      "A statically generated Next.js site with a custom canvas target-lock cursor, scroll-velocity marquees, aurora + particle backdrops, a ⌘K command palette and scroll-choreographed reveals — all hand-rolled, no component kits.",
+    highlights: [
+      "Custom cursor engine: corner brackets that lock onto interactive elements like a viewfinder.",
+      "Every effect built by hand with Motion + canvas — decrypt text, count-up metrics, spotlight tilt cards.",
+      "100% static output, reduced-motion aware, keyboard navigable and SEO-complete.",
+    ],
+    stack: ["Next.js 15", "React 19", "TypeScript", "Tailwind CSS 4", "Motion", "Canvas API"],
+    links: [
+      { label: "GitHub", href: "https://github.com/priyeshkhamar/my-portfolio" },
+      { label: "Live", href: "https://priyeshkhamar.vercel.app" },
+    ],
+    mockup: "portfolio",
+  },
+  {
+    name: "ERP Modules — Asset & Recruitment",
+    status: "Internship · Virtual Coders",
+    tagline:
+      "Asset Management and Recruitment modules for an internal ERP, shipped during my internship.",
+    description:
+      "Built two full ERP modules in Angular and .NET that improved internal workflow efficiency — integrated with existing systems and tested end-to-end alongside senior developers.",
+    highlights: [
+      "Full CRUD modules with role-based flows in Angular + .NET.",
+      "Integrated with the company's existing ERP systems.",
+      "End-to-end testing before release.",
+    ],
+    stack: ["Angular", ".NET", "REST", "SQL"],
+    mockup: "erp",
+  },
+];
 
 export type SkillGroup = {
   title: string;
@@ -270,7 +308,7 @@ export type NavLink = { label: string; href: string };
 export const navLinks: NavLink[] = [
   { label: "About", href: "#about" },
   { label: "Experience", href: "#experience" },
-  { label: "Work", href: "#work" },
+  { label: "Projects", href: "#projects" },
   { label: "Skills", href: "#skills" },
   { label: "Philosophy", href: "#philosophy" },
   { label: "Contact", href: "#contact" },
