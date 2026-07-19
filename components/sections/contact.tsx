@@ -1,6 +1,7 @@
 "use client";
 
-import { ArrowUpRight, Mail, Github, Linkedin, MapPin } from "lucide-react";
+import Link from "next/link";
+import { ArrowUpRight, Mail, Github, Linkedin, MapPin, FileText } from "lucide-react";
 import { Magnetic } from "@/components/ui/magnetic";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { contact, site } from "@/lib/data";
@@ -41,7 +42,7 @@ export function Contact() {
         </ScrollReveal>
 
         <ScrollReveal delay={0.15}>
-          <div className="mt-10 flex justify-center">
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
             <Magnetic>
               <a
                 href={`mailto:${site.email}`}
@@ -51,6 +52,15 @@ export function Contact() {
                 {site.email}
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </a>
+            </Magnetic>
+            <Magnetic strength={0.25}>
+              <Link
+                href="/resume"
+                className="inline-flex items-center gap-2 rounded-full border border-border-strong px-7 py-3.5 text-sm font-medium text-text transition-colors hover:border-accent hover:text-accent"
+              >
+                <FileText className="h-4 w-4" />
+                View resume
+              </Link>
             </Magnetic>
           </div>
         </ScrollReveal>

@@ -266,6 +266,31 @@ body {
   to { transform: rotate(360deg); }
 }
 
+/* Print styles — /resume prints as a clean document ("Download PDF") */
+@media print {
+  .print-hidden,
+  .noise-overlay {
+    display: none !important;
+  }
+  body,
+  .resume-page {
+    background: #fff !important;
+    padding: 0 !important;
+  }
+  .resume-sheet {
+    max-width: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+  .resume-block {
+    break-inside: avoid;
+  }
+  @page {
+    margin: 14mm;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

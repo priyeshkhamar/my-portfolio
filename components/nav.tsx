@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { motion } from "motion/react";
-import { Command } from "lucide-react";
+import { Command, FileText } from "lucide-react";
 import { navLinks, site } from "@/lib/data";
 import { cn } from "@/lib/utils";
 
@@ -23,7 +24,7 @@ export function Nav({ onOpenCommand }: { onOpenCommand: () => void }) {
     const observer = new IntersectionObserver(
       (entries) => {
         for (const e of entries) {
-          if (e.isIntersecting) setActive(`#${e.target.id}`);
+          if (e.isIntersecting) setActive(`/#${e.target.id}`);
         }
       },
       { rootMargin: "-40% 0px -55% 0px" },
@@ -50,8 +51,8 @@ export function Nav({ onOpenCommand }: { onOpenCommand: () => void }) {
             : "border-transparent bg-transparent",
         )}
       >
-        <a
-          href="#top"
+        <Link
+          href="/"
           className="flex items-center gap-2.5 pl-2 text-sm font-medium tracking-tight"
         >
           <span className="relative flex h-2 w-2">
@@ -59,7 +60,7 @@ export function Nav({ onOpenCommand }: { onOpenCommand: () => void }) {
             <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
           </span>
           {site.name}
-        </a>
+        </Link>
 
         <div className="hidden items-center gap-1 md:flex">
           {navLinks.map((link, i) => (
@@ -86,6 +87,14 @@ export function Nav({ onOpenCommand }: { onOpenCommand: () => void }) {
           ))}
         </div>
 
+        <div className="flex items-center gap-2">
+        <Link
+          href="/resume"
+          className="hidden items-center gap-1.5 rounded-full border border-accent/40 bg-accent-soft px-3.5 py-1.5 text-xs font-medium text-accent transition-colors hover:border-accent sm:flex"
+        >
+          <FileText className="h-3.5 w-3.5" />
+          Resume
+        </Link>
         <button
           onClick={onOpenCommand}
           className="flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1.5 text-xs text-muted transition-colors hover:border-accent/40 hover:text-text"
@@ -95,6 +104,7 @@ export function Nav({ onOpenCommand }: { onOpenCommand: () => void }) {
           <span className="hidden sm:inline">Menu</span>
           <kbd className="hidden font-mono text-[10px] text-faint sm:inline">⌘K</kbd>
         </button>
+        </div>
       </nav>
     </motion.header>
   );

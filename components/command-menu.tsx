@@ -16,8 +16,11 @@ import {
   Copy,
   Check,
   Command,
+  FileText,
+  BookOpen,
 } from "lucide-react";
 import { navLinks, site } from "@/lib/data";
+import { caseStudies } from "@/lib/case-studies";
 
 type Item = {
   group: string;
@@ -28,12 +31,12 @@ type Item = {
 };
 
 const sectionIcon: Record<string, React.ReactNode> = {
-  "#about": <User className="h-4 w-4" />,
-  "#experience": <Briefcase className="h-4 w-4" />,
-  "#projects": <LayoutGrid className="h-4 w-4" />,
-  "#skills": <Cpu className="h-4 w-4" />,
-  "#philosophy": <Compass className="h-4 w-4" />,
-  "#contact": <Mail className="h-4 w-4" />,
+  "/#about": <User className="h-4 w-4" />,
+  "/#experience": <Briefcase className="h-4 w-4" />,
+  "/#projects": <LayoutGrid className="h-4 w-4" />,
+  "/#skills": <Cpu className="h-4 w-4" />,
+  "/#philosophy": <Compass className="h-4 w-4" />,
+  "/#contact": <Mail className="h-4 w-4" />,
 };
 
 export function CommandMenu({
@@ -48,10 +51,21 @@ export function CommandMenu({
   const [copied, setCopied] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  /**
+   * Section hrefs look like "/#about". On the homepage we smooth-scroll to
+   * the element; on inner pages (case studies, resume) the element doesn't
+   * exist, so we do a real navigation instead.
+   */
   const go = (href: string) => {
     setOpen(false);
-    const el = document.querySelector(href);
-    el?.scrollIntoView({ behavior: "smooth" });
+    const hashIndex = href.indexOf("#");
+    const el =
+      hashIndex >= 0 ? document.getElementById(href.slice(hashIndex + 1)) : null;
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      window.location.href = href;
+    }
   };
 
   const items: Item[] = useMemo(() => {
@@ -60,7 +74,17 @@ export function CommandMenu({
         group: "Navigate",
         label: "Top",
         icon: <Home className="h-4 w-4" />,
-        action: () => go("#top"),
+        action: () => go("/#top"),
+      },
+      {
+        group: "Navigate",
+        label: "Resume",
+        hint: "View · Download PDF",
+        icon: <FileText className="h-4 w-4" />,
+        action: () => {
+          setOpen(false);
+          window.location.href = "/resume";
+        },
       },
       ...navLinks.map((l) => ({
         group: "Navigate",
@@ -109,7 +133,18 @@ export function CommandMenu({
       },
     ];
 
-    return [...nav, ...actions, ...links];
+    const studies: Item[] = caseStudies.map((c) => ({
+      group: "Case studies",
+      label: c.name,
+      hint: c.status,
+      icon: <BookOpen className="h-4 w-4" />,
+      action: () => {
+        setOpen(false);
+        window.location.href = `/projects/${c.slug}`;
+      },
+    }));
+
+    return [...nav, ...studies, ...actions, ...links];
   }, [copied]);
 
   const filtered = useMemo(() => {
