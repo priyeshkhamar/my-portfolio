@@ -138,6 +138,8 @@ export const education = [
 
 export type Project = {
   featured?: boolean;
+  /** Slug of the matching case study at /projects/[slug]. */
+  slug: string;
   name: string;
   status: string;
   tagline: string;
@@ -150,6 +152,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     featured: true,
+    slug: "cio-360",
     name: "CIO 360",
     status: "Production · Attra Technologies",
     tagline:
@@ -173,6 +176,7 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "portfolio",
     name: "This portfolio",
     status: "Open source · You're looking at it",
     tagline:
@@ -191,6 +195,7 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "erp-modules",
     name: "ERP Modules — Asset & Recruitment",
     status: "Internship · Virtual Coders",
     tagline:
@@ -300,11 +305,15 @@ export const contact = {
 } as const;
 
 export type NavLink = { label: string; href: string };
+/**
+ * Section links use `/#hash` (not `#hash`) so they also work from inner
+ * routes like /projects/[slug] and /resume.
+ */
 export const navLinks: NavLink[] = [
-  { label: "About", href: "#about" },
-  { label: "Experience", href: "#experience" },
-  { label: "Projects", href: "#projects" },
-  { label: "Skills", href: "#skills" },
-  { label: "Philosophy", href: "#philosophy" },
-  { label: "Contact", href: "#contact" },
+  { label: "About", href: "/#about" },
+  { label: "Experience", href: "/#experience" },
+  { label: "Projects", href: "/#projects" },
+  { label: "Skills", href: "/#skills" },
+  { label: "Philosophy", href: "/#philosophy" },
+  { label: "Contact", href: "/#contact" },
 ];

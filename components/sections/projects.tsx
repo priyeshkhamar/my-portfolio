@@ -1,6 +1,7 @@
 "use client";
 
-import { ArrowUpRight, Check } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { projects, type Project } from "@/lib/data";
 import { TechLabel } from "@/lib/tech-icons";
@@ -73,22 +74,27 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           {project.description}
         </p>
 
-        {project.links && (
-          <div className="mt-6 flex flex-wrap gap-3">
-            {project.links.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-full border border-border-strong px-4 py-2 text-xs font-medium text-text transition-colors hover:border-accent hover:text-accent"
-              >
-                {l.label}
-                <ArrowUpRight className="h-3.5 w-3.5" />
-              </a>
-            ))}
-          </div>
-        )}
+        <div className="mt-6 flex flex-wrap gap-3">
+          <Link
+            href={`/projects/${project.slug}`}
+            className="group/cta inline-flex items-center gap-1.5 rounded-full bg-accent px-4 py-2 text-xs font-semibold text-bg transition-transform hover:scale-[1.03]"
+          >
+            Read the case study
+            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/cta:translate-x-0.5" />
+          </Link>
+          {project.links?.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-full border border-border-strong px-4 py-2 text-xs font-medium text-text transition-colors hover:border-accent hover:text-accent"
+            >
+              {l.label}
+              <ArrowUpRight className="h-3.5 w-3.5" />
+            </a>
+          ))}
+        </div>
       </div>
 
       {/* highlights + stack column */}
