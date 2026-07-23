@@ -23,7 +23,7 @@ export function Contact() {
         <ScrollReveal>
           <p className="kicker flex items-center justify-center gap-3">
             <span className="h-px w-8 bg-accent/50" />
-            06 — {contact.kicker}
+            05 — {contact.kicker}
             <span className="h-px w-8 bg-accent/50" />
           </p>
         </ScrollReveal>

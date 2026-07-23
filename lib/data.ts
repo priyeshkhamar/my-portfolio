@@ -26,38 +26,37 @@ export const site = {
   linkedin: "https://linkedin.com/in/priyeshkhamar",
   url: siteUrl,
   description:
-    "Full-Stack Software Developer with 2+ years shipping production web applications — sole developer of a live monitoring, automation and SOAR platform web app in React.js, owning API contracts across a Laravel backend and native iOS app.",
+    "Full-stack developer with 2+ years shipping production web apps. Sole developer of a live monitoring, automation and SOAR platform in React, owning the REST API contracts its Laravel backend and iOS app build against.",
 } as const;
 
 export const hero = {
   kicker: "Full-Stack Software Developer",
   headline: "Building production software from idea to deployment.",
-  sub: "I work across product and engineering — sole developer of a production React platform, and I define the REST API contracts its Laravel backend and native iOS app build against.",
+  sub: "Sole developer of a production monitoring & SOAR platform in React — and I own the REST API contracts its Laravel backend and native iOS app build against.",
 } as const;
 
 export const about = {
   kicker: "About",
   title: "From understanding the product to building it.",
   paragraphs: [
-    "My path into engineering ran through the product side. After an internship shipping ERP modules, I spent six months coordinating delivery between stakeholders and external engineers — where I learned how products actually get scoped, negotiated and shipped.",
-    "When I moved into development, I built a production React platform from an empty repo and took on the API contracts other teams rely on. Having seen the product side first, I try to keep the why in view, not just the how.",
+    "My path into engineering ran through the product side — an ERP internship, then six months coordinating delivery between stakeholders and external engineers. When I moved into development, I built a production React platform from an empty repo and took on the API contracts other teams depend on. Having seen the product side first, I keep the why in view, not just the how.",
   ],
   pillars: [
     {
       title: "Product understanding",
-      body: "I try to scope features from the user's need first, so what ships solves the problem it was meant to.",
+      body: "I scope features from the user's need first, so what ships solves the real problem.",
     },
     {
       title: "Ownership",
-      body: "I stay with a feature across its lifecycle — from first commit to fixing issues in production — rather than handing it off partway.",
+      body: "I stay with a feature from first commit to production fixes — no half-way hand-offs.",
     },
     {
       title: "Communication",
-      body: "I write and document the API contract so the backend and iOS teams have a single reference to build against.",
+      body: "I write the API contract down, so backend and iOS build against one reference.",
     },
     {
       title: "Technical growth",
-      body: "I take on the less familiar problems — schema design, auth, cross-platform integration — because that's how I keep learning.",
+      body: "I take the unfamiliar problems — schema design, auth, integration — to keep learning.",
     },
   ],
 } as const;
@@ -79,13 +78,11 @@ export const experience: ExperienceItem[] = [
     company: "Attra Technologies",
     location: "Ahmedabad",
     summary:
-      "Sole developer of the platform's web application, and the primary technical interface between product and an external engineering team.",
+      "Sole developer of the platform's web app, and the primary technical interface between product and an external engineering team.",
     outcomes: [
-      "Sole developer of a production React.js web application for a monitoring, automation and SOAR platform — built from scratch and independently shipped to live users.",
-      "Designed and documented REST API contracts for a Laravel backend — endpoint schemas, request/response structures and data flows consumed across web and iOS clients.",
-      "Authored technical scope documents and feature requirements for a 3-person external iOS and backend team, acting as the primary technical interface between product and engineering.",
-      "Drove feature delivery across web, iOS and backend workstreams through daily progress meetings — surfacing blockers early and consistently hitting release deadlines.",
-      "Applied AI-assisted development tooling to accelerate implementation, tighten debugging cycles and maintain code quality in a lean team setup.",
+      "Sole developer of a production React.js web app for a monitoring, automation & SOAR platform — empty repo to live users.",
+      "Designed and documented the REST API contracts for a Laravel backend, consumed identically across web and iOS clients.",
+      "Primary technical interface between product and a 3-person external iOS/backend team — scope docs, daily syncs, on-time releases.",
     ],
     stack: ["React.js", "Redux", "REST contracts", "Laravel (integration)", "iOS (integration)"],
   },
@@ -97,9 +94,8 @@ export const experience: ExperienceItem[] = [
     summary:
       "Coordinated between stakeholders and external teams — the role where I learned how delivery actually works.",
     outcomes: [
-      "Coordinated between business stakeholders and external development teams through daily standups and structured check-ins, keeping requirements clear and deadlines met.",
-      "Maintained project trackers, documented key decisions and ran cross-functional syncs.",
-      "Built the delivery discipline that led directly into the move to a hands-on engineering role.",
+      "Coordinated between business stakeholders and external dev teams through daily standups — clear requirements, met deadlines.",
+      "Ran cross-functional syncs and documented decisions — the delivery discipline that led into an engineering role.",
     ],
     stack: ["Agile / Scrum", "Delivery", "Stakeholders", "Documentation"],
   },
@@ -112,8 +108,7 @@ export const experience: ExperienceItem[] = [
       "Shipped real ERP modules — my first taste of production-grade software.",
     outcomes: [
       "Built Asset Management and Recruitment ERP modules in Angular and .NET, improving internal workflow efficiency.",
-      "Integrated modules with existing systems and performed end-to-end testing.",
-      "Collaborated with senior developers on code quality.",
+      "Integrated with existing systems and tested end-to-end alongside senior developers.",
     ],
     stack: ["Angular", ".NET", "REST", "SQL"],
   },
@@ -158,12 +153,12 @@ export const projects: Project[] = [
     tagline:
       "A monitoring, automation & SOAR platform — one operational view across an organization's tech stack, with automated response on top.",
     description:
-      "CIO 360 consolidates a fragmented stack of security, identity, backup and compliance tools — Microsoft Entra ID, DefensX, Dropsuite, Secure Connect and more — into one dashboard, then orchestrates security responses so CIOs, CISOs and MSPs can monitor, decide and act from a single place. I built and shipped the entire web application independently.",
+      "Consolidates a dozen security, identity and backup tools — Entra ID, DefensX, Dropsuite and more — into one dashboard, then orchestrates responses. I built and shipped the entire web app independently.",
     highlights: [
-      "Sole React.js developer — from empty repo to live users.",
-      "Designed and documented the REST API contracts a Laravel backend and native iOS app both build against.",
-      "Normalized a dozen vendor feeds into consistent data shapes with explicit error semantics, consumed identically by web and iOS.",
-      "Primary technical interface between product and a 3-person external engineering team.",
+      "Sole React.js developer — empty repo to live users.",
+      "Own the REST API contracts a Laravel backend and iOS app both build against.",
+      "Normalized a dozen vendor feeds into one canonical schema with explicit error semantics.",
+      "Primary technical interface to a 3-person external engineering team.",
     ],
     stack: [
       "React.js",
@@ -180,13 +175,13 @@ export const projects: Project[] = [
     name: "This portfolio",
     status: "Open source · You're looking at it",
     tagline:
-      "The site you're on — designed and built from scratch as a playground for modern front-end craft.",
+      "The site you're on — designed and built from scratch, every effect hand-rolled.",
     description:
-      "A statically generated Next.js site with a custom cursor engine, a procedural 3D hero, a scroll-pinned project deck, scroll-velocity marquees, a ⌘K command palette and scroll-choreographed reveals — every effect written from scratch.",
+      "A fully static Next.js 15 site: custom cursor engine, procedural three.js hero, scroll-pinned project deck and a ⌘K command palette — with the expensive parts lazy-loaded behind first paint.",
     highlights: [
-      "Custom dot-and-ring cursor and scroll-pinned card deck, hand-rolled with Motion + DOM.",
-      "Procedural particle-sphere hero in three.js — lazy-loaded so first paint stays instant.",
-      "100% static output, reduced-motion aware, keyboard navigable and SEO-complete.",
+      "Custom cursor and scroll-pinned card deck, hand-rolled with Motion + DOM.",
+      "three.js hero lazy-loaded post-hydration, desktop-only — instant first paint.",
+      "Fully static, reduced-motion aware, keyboard navigable, SEO-complete.",
     ],
     stack: ["Next.js 15", "React 19", "TypeScript", "Tailwind CSS 4", "Motion", "Three.js / R3F"],
     links: [
@@ -266,38 +261,6 @@ export const skillGroups: SkillGroup[] = [
   },
 ];
 
-export const philosophy = {
-  kicker: "How I work",
-  title: "A few things I try to work by.",
-  principles: [
-    {
-      n: "01",
-      title: "Ownership over hand-off",
-      body: "I like to take a feature from rough idea through to deployment rather than handing it off partway. Fewer hand-offs usually means fewer things fall through the cracks.",
-    },
-    {
-      n: "02",
-      title: "Ship, then improve",
-      body: "I try to get something correct into production first and improve it from there, instead of polishing in isolation.",
-    },
-    {
-      n: "03",
-      title: "Write the interface down",
-      body: "When several teams build against one contract, writing the interface down clearly saves a lot of confusion later.",
-    },
-    {
-      n: "04",
-      title: "Agree the definitions early",
-      body: "Working across backend and iOS taught me that good integration mostly comes down to clear, agreed definitions. I try to make those explicit early.",
-    },
-    {
-      n: "05",
-      title: "Keep the user in view",
-      body: "Having worked on the product side, I try to keep the user's actual need in view and to ask early whether a feature solves the right problem.",
-    },
-  ],
-} as const;
-
 export const contact = {
   kicker: "Contact",
   title: "Let's talk.",
@@ -310,10 +273,9 @@ export type NavLink = { label: string; href: string };
  * routes like /projects/[slug] and /resume.
  */
 export const navLinks: NavLink[] = [
-  { label: "About", href: "/#about" },
-  { label: "Experience", href: "/#experience" },
   { label: "Projects", href: "/#projects" },
+  { label: "Experience", href: "/#experience" },
   { label: "Skills", href: "/#skills" },
-  { label: "Philosophy", href: "/#philosophy" },
+  { label: "About", href: "/#about" },
   { label: "Contact", href: "/#contact" },
 ];

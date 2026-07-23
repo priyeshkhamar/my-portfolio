@@ -11,7 +11,6 @@ import {
   Briefcase,
   LayoutGrid,
   Cpu,
-  Compass,
   Home,
   Copy,
   Check,
@@ -35,7 +34,6 @@ const sectionIcon: Record<string, React.ReactNode> = {
   "/#experience": <Briefcase className="h-4 w-4" />,
   "/#projects": <LayoutGrid className="h-4 w-4" />,
   "/#skills": <Cpu className="h-4 w-4" />,
-  "/#philosophy": <Compass className="h-4 w-4" />,
   "/#contact": <Mail className="h-4 w-4" />,
 };
 

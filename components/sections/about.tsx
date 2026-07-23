@@ -8,7 +8,7 @@ export function About() {
       <div className="mx-auto grid w-full max-w-6xl gap-14 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <SectionHeading
-            index="01"
+            index="04"
             kicker={about.kicker}
             title={
               <>
